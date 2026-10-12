@@ -2,7 +2,7 @@
 
 在 [eNSP](https://support.huawei.com/enterprise/zh/software/250314204) 路由器的 Console 里敲命令时，自动弹出**候选框**：敲几个字母就能看到匹配的 VRP 命令，数字键选中，还能看到每条命令的中文解释和风险等级。
 
-写这个是因为在 eNSP 里敲长命令太容易拼错，而 eNSP 自带的历史记录和补全都不够用。现在敲 `disp` 就能直接选 `display ip interface brief`，不用记全拼。
+因为在 eNSP 里敲长命令太容易拼错，而 eNSP 自带的历史记录和补全都不够用。现在敲 `disp` 就能直接选 `display ip interface brief`，不用记全拼。
 
 ## 特点
 
