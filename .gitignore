@@ -1,0 +1,29 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# ---- 运行期产生的文件（每次运行都会变，不进仓库）----
+logs/
+daima.txt
+usage.json
+
+# ---- 打包中间产物（build.ps1 生成）----
+build-*/
+dist/
+
+# ---- 压缩包（成品文件夹的重复打包，不重复收录）----
+*.zip
+
+# ---- 本机调试用的全屏截图脚本，不进开源仓库 ----
+watch_ensp_screen.ps1
+
+# ---- 编辑器 / 系统 ----
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
