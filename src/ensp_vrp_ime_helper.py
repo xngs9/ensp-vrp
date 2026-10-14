@@ -2547,6 +2547,10 @@ class App:
         self.candidate_closed_by_escape = False
         self.tail_search_mode = False
         self.replace_current_token_only = False
+        # 隐身输入：在 eNSP 里敲的字只进候选框，不落到 Console；
+        # 只有"数字键补全 / 空格 / 符号 / Esc"才会把内容送进 eNSP。
+        # Esc 会把它关掉（方便接着手改），按回车开始新的一行时重新打开。
+        self.invisible_input = True
         self.last_target_hwnd = None
         self.smoke_mode = hook_smoke_test
         self.start_keyboard = bool(start_keyboard or hook_smoke_test)
@@ -2680,6 +2684,7 @@ class App:
         self.ctrl_query_mode = False
         self.ctrl_virtual_len = 0
         self.ctrl_space_latched = False
+        self.invisible_input = True
         self.hide()
         if hasattr(self, "status_info"):
             state = "启用" if self.enabled else "暂停"
@@ -3116,6 +3121,7 @@ class App:
             self.candidate_closed_by_escape = False
             self.tail_search_mode = False
             self.replace_current_token_only = False
+            self.invisible_input = True
             App.schedule_ui(self, self.hide)
             return False
         if self.suppress_key_events > 0:
@@ -3144,23 +3150,12 @@ class App:
             self.manual_lookup_query = ""
             self.candidate_closed_by_escape = False
             self.tail_search_mode = False
+            self.invisible_input = True
             App.schedule_ui(self, self.hide)
             return False
         self.last_target_hwnd = self.user32.GetForegroundWindow()
         if vk == Keyboard.VK_ESCAPE:
-            had_items = bool(self.items)
-            self.items = []
-            self.buffer = ""
-            self.host_buffer_len = 0
-            self.ctrl_query_mode = False
-            self.ctrl_virtual_len = 0
-            self.ctrl_space_latched = False
-            self.pending_command = ""
-            App.schedule_ui(self, self.hide)
-            self.candidate_closed_by_escape = False
-            self.tail_search_mode = False
-            self.replace_current_token_only = True
-            return had_items
+            return self.handle_escape_key()
         if 0x31 <= vk <= 0x39 and self.number_key_should_choose_candidate():
             idx = vk - 0x31
             if idx < len(self.items):
@@ -3172,101 +3167,90 @@ class App:
         if page_delta and candidate_visible:
             App.schedule_ui(self, lambda delta=page_delta: self.candidate_page(delta))
             return True
-        ctrl_down = self.ctrl_pressed()
-        if ctrl_down and vk == Keyboard.VK_BACK:
-            old_len = len(self.buffer)
-            self.buffer = self.buffer[:-1].rstrip()
-            removed = max(0, old_len - len(self.buffer))
-            self.ctrl_virtual_len = max(0, self.ctrl_virtual_len - removed)
-            self.ctrl_query_mode = self.ctrl_virtual_len > 0
-            self.ctrl_space_latched = self.ctrl_query_mode
-            self.page = 0
-            App.schedule_ui(self, self.hide if not self.buffer else self.show)
-            return True
         if vk == Keyboard.VK_BACK:
-            self.buffer = self.buffer[:-1]
-            self.host_buffer_len = max(0, self.host_buffer_len - 1)
-            self.ctrl_virtual_len = 0
-            self.ctrl_query_mode = False
-            self.ctrl_space_latched = False
-            self.page = 0
-            App.schedule_ui(self, self.hide if not self.buffer else self.show)
-            return False
+            return self.handle_backspace_key()
         ch = self.vk_to_char(vk)
-        if ch:
-            if ctrl_down and (is_query_char(ch) or ch.isspace()):
-                self.ctrl_query_mode = True
-                self.ctrl_space_latched = True
-                appended = ""
-                if ch.isspace():
-                    if self.buffer and not self.buffer.endswith(" "):
-                        appended = " "
-                else:
-                    appended = ch
-                if appended:
-                    self.buffer += appended
-                    self.ctrl_virtual_len += len(appended)
-                if len(self.buffer) > 48:
-                    self.buffer = self.buffer[-48:]
-                    self.ctrl_virtual_len = min(self.ctrl_virtual_len, len(self.buffer))
-                self.page = 0
-                self.candidate_closed_by_escape = False
-                App.schedule_ui(self, self.hide if not self.buffer.strip() else self.show)
-                return True
-            if self.ctrl_space_latched and is_query_char(ch):
-                self.ctrl_query_mode = True
-                self.buffer += ch
-                self.ctrl_virtual_len += len(ch)
-                if len(self.buffer) > 48:
-                    self.buffer = self.buffer[-48:]
-                    self.ctrl_virtual_len = min(self.ctrl_virtual_len, len(self.buffer))
-                self.page = 0
-                self.candidate_closed_by_escape = False
-                App.schedule_ui(self, self.show)
-                return True
-            if ch.isspace():
-                self.items = []
-                self.buffer = ""
-                self.host_buffer_len = 0
-                self.ctrl_query_mode = False
-                self.ctrl_virtual_len = 0
-                self.ctrl_space_latched = False
-                self.pending_command = ""
-                self.tail_search_mode = False
-                self.candidate_closed_by_escape = False
-                self.replace_current_token_only = True
-                self.page = 0
-                App.schedule_ui(self, self.hide)
-                return False
-            if not is_query_char(ch) or not self.accept_query_char(ch):
-                self.items = []
-                self.buffer = ""
-                self.host_buffer_len = 0
-                self.ctrl_query_mode = False
-                self.ctrl_virtual_len = 0
-                self.ctrl_space_latched = False
-                self.pending_command = ""
-                self.tail_search_mode = False
-                self.candidate_closed_by_escape = False
-                self.replace_current_token_only = True
-                self.page = 0
-                App.schedule_ui(self, self.hide)
-                return False
-            self.buffer += ch
-            self.buffer = self.buffer[-48:]
-            self.host_buffer_len += len(ch)
-            self.ctrl_query_mode = False
-            self.ctrl_virtual_len = 0
-            self.ctrl_space_latched = False
-            self.page = 0
-            if ch.isalpha() or ch in "_-":
-                self.candidate_closed_by_escape = False
-            if self.candidate_closed_by_escape or ch.isdigit() or ch.isspace():
-                App.schedule_ui(self, self.hide)
-            else:
-                App.schedule_ui(self, self.show)
+        if ch is None:
             return False
+        return self.handle_char_key(ch)
+
+    def reset_query_state(self):
+        self.buffer = ""
+        self.host_buffer_len = 0
+        self.ctrl_query_mode = False
+        self.ctrl_virtual_len = 0
+        self.ctrl_space_latched = False
+        self.items = []
+        self.page = 0
+        self.pending_command = ""
+        self.tail_search_mode = False
+        self.replace_current_token_only = False
+
+    def commit_buffer_to_host(self, text, tail_key=None):
+        """把正在候选框里组好的内容送进 eNSP（由 UI 线程执行，保证按键顺序）。"""
+        if not text and tail_key is None:
+            return
+        App.maybe_log_page_trace(self, "ghost_commit", text=text, tail_key=tail_key)
+        App.schedule_ui(self, lambda value=text, key=tail_key: self.type_into_host(value, key))
+
+    def handle_escape_key(self):
+        # Esc：把组好的词原样落进 eNSP 输入行，然后退出隐身，方便接着手改。
+        # 没有在组词时保持原行为：关掉候选框，Esc 本身交给 eNSP。
+        had_items = bool(self.items)
+        pending = self.buffer
+        self.reset_query_state()
+        self.candidate_closed_by_escape = False
+        self.replace_current_token_only = True
+        self.invisible_input = False
+        App.schedule_ui(self, self.hide)
+        if pending:
+            self.commit_buffer_to_host(pending)
+            return True
+        return had_items
+
+    def handle_backspace_key(self):
+        # 退格只改候选框里的词，绝不发给 eNSP —— 这样就不存在"删不干净"。
+        if not self.buffer:
+            return False
+        if self.ctrl_pressed():
+            self.buffer = self.buffer[:-1].rstrip()
+        else:
+            self.buffer = self.buffer[:-1]
+        self.ctrl_virtual_len = len(self.buffer)
+        self.ctrl_query_mode = bool(self.buffer)
+        self.ctrl_space_latched = bool(self.buffer)
+        self.page = 0
+        App.schedule_ui(self, self.hide if not self.buffer else self.show)
+        return True
+
+    def handle_char_key(self, ch):
+        if not self.invisible_input:
+            return False
+        if is_query_char(ch) and self.accept_query_char(ch):
+            # 隐身：这个字只进候选框，eNSP 里不出现，所以永远不需要删。
+            self.buffer = (self.buffer + ch)[-48:]
+            self.ctrl_virtual_len = len(self.buffer)
+            self.ctrl_query_mode = True
+            self.ctrl_space_latched = True
+            self.page = 0
+            self.candidate_closed_by_escape = False
+            self.replace_current_token_only = False
+            App.schedule_ui(self, self.show)
+            return True
+        # 空格 / ? / : / 等符号：先把组好的词落进 eNSP，再连同这个字符一起送过去，
+        # 顺序才不会颠倒。没有在组词时交给 eNSP 正常处理。
+        pending = self.buffer
+        self.reset_query_state()
+        App.schedule_ui(self, self.hide)
+        if pending:
+            if ch == " ":
+                # 空格用真按键补：粘贴内容末尾的空格会被控制台丢掉。
+                self.commit_buffer_to_host(pending, tail_key=0x20)
+            else:
+                self.commit_buffer_to_host(pending + ch)
+            return True
         return False
+
 
     @staticmethod
     def page_key_delta(vk):
@@ -3338,49 +3322,54 @@ class App:
         virtual_len = min(len(self.buffer), max(0, int(getattr(self, "ctrl_virtual_len", 0) or 0)))
         return max(0, len(self.buffer) - virtual_len)
 
-    def choose(self, item):
-        text = item["insert"] or item["command"]
-        paste_text = text
-        typed_token_len = self.typed_delete_len()
-        self.pending_command = text
-        self.store.record_use(item["insert"] or item["command"])
-        self.hide()
-        paste_text = text
+    def type_into_host(self, text, tail_key=None):
+        # 把 text 送进 eNSP 当前光标处：优先剪贴板粘贴，失败则逐键敲。
+        # tail_key 是"跟在后面"的一个按键（比如空格）：粘贴会把尾部空格吃掉，
+        # 所以这类收尾字符必须用真按键补，不能塞进粘贴内容里。
+        if not text and tail_key is None:
+            return
         self.suppress_key_events = 0
         target_hwnd = self.last_target_hwnd or self.user32.GetForegroundWindow()
         if target_hwnd:
             self.user32.ShowWindow(target_hwnd, 5)
             self.user32.SetForegroundWindow(target_hwnd)
             time.sleep(0.12)
-        previous_clipboard = self.read_clipboard_text()
-        clipboard_ready = self.write_clipboard_text(paste_text)
-        for _ in range(10):
-            if clipboard_ready and self.read_clipboard_text() == paste_text:
-                break
-            time.sleep(0.03)
-        else:
-            clipboard_ready = False
-        if target_hwnd:
-            self.user32.SetForegroundWindow(target_hwnd)
+        if text:
+            previous_clipboard = self.read_clipboard_text()
+            clipboard_ready = self.write_clipboard_text(text)
+            for _ in range(10):
+                if clipboard_ready and self.read_clipboard_text() == text:
+                    break
+                time.sleep(0.03)
+            else:
+                clipboard_ready = False
+            if target_hwnd:
+                self.user32.SetForegroundWindow(target_hwnd)
+                time.sleep(0.05)
+            if clipboard_ready and self.read_clipboard_text() == text:
+                self.send_ctrl_v()
+            else:
+                self.send_text(text)
+            if previous_clipboard is not None:
+                self.root.after(5000, lambda value=previous_clipboard: self.restore_clipboard_text(value))
+        if tail_key is not None:
             time.sleep(0.05)
-        self.send_backspaces(typed_token_len)
-        time.sleep(0.05)
-        if target_hwnd:
-            self.user32.SetForegroundWindow(target_hwnd)
-            time.sleep(0.03)
-        if clipboard_ready and self.read_clipboard_text() == paste_text:
-            self.send_ctrl_v()
-        else:
-            self.send_text(paste_text)
-        self.buffer = text
-        self.host_buffer_len = len(text)
-        self.ctrl_query_mode = False
-        self.ctrl_virtual_len = 0
-        self.ctrl_space_latched = False
-        self.tail_search_mode = False
-        self.replace_current_token_only = False
-        if previous_clipboard is not None:
-            self.root.after(5000, lambda value=previous_clipboard: self.restore_clipboard_text(value))
+            self.send_key(tail_key)
+
+    def choose(self, item):
+        text = item["insert"] or item["command"]
+        typed_token_len = self.typed_delete_len()
+        self.hide()
+        self.reset_query_state()
+        self.invisible_input = True
+        self.pending_command = text
+        self.store.record_use(text)
+        App.maybe_log_page_trace(self, "choose", text=text, delete_len=typed_token_len)
+        if typed_token_len > 0:
+            # 隐身模式下这里恒为 0（候选框里的字从没进过 eNSP）；保留兜底以防残留。
+            self.send_backspaces(typed_token_len)
+            time.sleep(0.05)
+        self.type_into_host(text)
 
     def cancel_current_input(self, target_hwnd=None):
         self.hide()
@@ -3627,11 +3616,17 @@ class App:
         self.store.save_usage()
         result_path = self.store.logs_dir / "hook_smoke_result_multi.txt"
         cases = [
-            {"name": "display_from_d_digit_1", "input": "d", "target": "display", "expected": "display", "view": "user-view"},
-            {"name": "display_prefix", "input": "dis", "target": "display", "expected": "display", "view": "user-view"},
-            {"name": "port_access", "input": "p", "target": "port link-type access", "expected": "port link-type access", "view": "interface-view"},
-            {"name": "escape_digit_passthrough", "input": "2", "expected": "2", "view": "interface-view", "pre_buffer": "ip ", "pre_items": True, "candidate_closed_by_escape": True},
-            {"name": "digits_passthrough_no_candidates", "input": "100", "expected": "100", "view": "system-view", "pre_buffer": "interface ethernet0/0/"},
+            {"name": "ghost_single_word", "input": "d", "target": "display", "expected": "display", "view": "user-view"},
+            {"name": "ghost_three_letter_prefix", "input": "dis", "target": "display", "expected": "display", "view": "user-view"},
+            {"name": "ghost_port_access", "input": "p", "target": "port link-type access", "expected": "port link-type access", "view": "interface-view"},
+            {"name": "ghost_space_commit", "input": "dis", "expected": "dis", "view": "user-view",
+             "steps": [{"input": "dis"}, {"input": " "}]},
+            {"name": "ghost_escape_commit", "input": "dis", "expected": "dis", "view": "user-view",
+             "steps": [{"input": "dis"}, {"press": 27}]},
+            {"name": "ghost_multi_word", "input": "dis", "expected_prefix": "dis ", "view": "user-view",
+             "steps": [{"input": "dis"}, {"input": " "}, {"input": "i", "target_prefix": "i"}]},
+            {"name": "ghost_space_then_digit", "input": "dis", "expected": "dis 1", "view": "user-view",
+             "steps": [{"input": "dis"}, {"input": " "}, {"press": 0x31}]},
         ]
         report = {"ok": False, "steps": [], "resultPath": str(result_path), "cases": []}
         proc = None
@@ -3643,7 +3638,7 @@ class App:
             report["steps"].append("keyboard hook installed")
             for case_index, case in enumerate(cases):
                 case_result_path = self.store.logs_dir / f"hook_smoke_result_{case_index}_{re.sub(r'[^A-Za-z0-9_-]+', '_', case['name'])}.txt"
-                case_report = {"name": case["name"], "input": case.get("input", [step["input"] for step in case.get("steps", [])]), "resultPath": str(case_result_path)}
+                case_report = {"name": case["name"], "input": case.get("input") or [step.get("input", "") for step in case.get("steps", [])], "resultPath": str(case_result_path)}
                 proc = None
                 try:
                     try:
@@ -3666,7 +3661,7 @@ class App:
                         raise RuntimeError("target PowerShell window not found")
                     self.user32.ShowWindow(hwnd, 5)
                     self.user32.SetForegroundWindow(hwnd)
-                    time.sleep(0.7)
+                    time.sleep(1.2)
                     self.current_view = case["view"]
                     self.buffer = case.get("pre_buffer", "")
                     self.items = [{"command": "interface Vlanif", "insert": "interface Vlanif"}] if case.get("pre_items") else []
@@ -3681,6 +3676,10 @@ class App:
                         "target_prefix": case.get("target_prefix"),
                     }]
                     for step in steps:
+                        if step.get("press") is not None:
+                            self.smoke_press_key(step["press"])
+                            time.sleep(1.2)
+                            continue
                         self.smoke_type_text(step["input"])
                         time.sleep(1.0)
                         if not (step.get("target") or step.get("target_prefix")):
@@ -3698,6 +3697,8 @@ class App:
                         if not chosen:
                             raise RuntimeError("target candidate not found: " + ", ".join(item["command"] for item in self.items[:PAGE_SIZE]))
                         time.sleep(1.2)
+                    # 落字是异步注入的（UI 线程做剪贴板粘贴），回车前等它做完。
+                    time.sleep(1.5)
                     self.smoke_press_key(Keyboard.VK_RETURN)
                     deadline = time.time() + 8
                     lines = []
