@@ -3226,6 +3226,18 @@ class App:
     def handle_char_key(self, ch):
         if not self.invisible_input:
             return False
+        if ch == " " and self.ctrl_pressed():
+            # Ctrl+空格：往查询词里加一个空格，方便一次搜多个词。
+            # 不落地、不提交（普通空格才是"提交当前词"）。
+            if self.buffer and not self.buffer.endswith(" "):
+                self.buffer += " "
+            self.ctrl_virtual_len = len(self.buffer)
+            self.ctrl_query_mode = True
+            self.ctrl_space_latched = True
+            self.page = 0
+            self.candidate_closed_by_escape = False
+            App.schedule_ui(self, self.show if self.buffer.strip() else self.hide)
+            return True
         if is_query_char(ch) and self.accept_query_char(ch):
             # 隐身：这个字只进候选框，eNSP 里不出现，所以永远不需要删。
             self.buffer = (self.buffer + ch)[-48:]
@@ -3245,7 +3257,8 @@ class App:
         if pending:
             if ch == " ":
                 # 空格用真按键补：粘贴内容末尾的空格会被控制台丢掉。
-                self.commit_buffer_to_host(pending, tail_key=0x20)
+                # 先 rstrip：查询词尾部可能已有 Ctrl+空格 加的空格，否则会多出一个。
+                self.commit_buffer_to_host(pending.rstrip(), tail_key=0x20)
             else:
                 self.commit_buffer_to_host(pending + ch)
             return True
