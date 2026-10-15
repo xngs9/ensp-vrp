@@ -1767,6 +1767,18 @@ def translate_subject(subject: str) -> str:
         "iih": "IS-IS Hello",
         "iih-cache": "IS-IS Hello 缓存",
         "iih-send-optimize": "IS-IS Hello 发送优化",
+        # 2026-10-15 补：这些是普通英文词，词表里漏了，导致释义里原样留着英文。
+        # 只收「意思不随上下文变」的；set/show/on/off/up/down 那类会看语境变意思
+        # （如 bfd-down 是"BFD 失效"不是"离线"），盲补反而错，先不收。
+        "auto": "自动",
+        "name": "名称",
+        "into": "到",
+        "high": "高",
+        "low": "低",
+        "lsb": "低位",
+        "msb": "高位",
+        "lock": "锁定",
+        "test": "测试",
     }
     key = subject.lower()
     if key in mapping:
@@ -2773,7 +2785,7 @@ class App:
             self.root.attributes("-alpha", self.candidate_opacity)
         except tk.TclError:
             pass
-        if self.items:
+        if self.items or getattr(self, "window_should_show", False):
             self.position_near_foreground()
             hwnd = self.root.winfo_id()
             self.user32.SetWindowPos(hwnd, self.HWND_TOPMOST, self.root.winfo_x(), self.root.winfo_y(), 0, 0, self.SWP_NOSIZE | self.SWP_NOACTIVATE | self.SWP_SHOWWINDOW)
@@ -2873,7 +2885,7 @@ class App:
 
     def show(self, repaint: bool = True):
         self.render()
-        if not self.items:
+        if not getattr(self, "window_should_show", True):
             return
         self.refresh_candidate_window(repaint=repaint)
         hwnd = self.root.winfo_id()
@@ -2893,15 +2905,26 @@ class App:
         search_text = self.search_text()
         manual_lookup = bool(getattr(self, "manual_lookup_active", False))
         self.items, self.pages, self.total = self.store.search(search_text, self.page, self.current_view, False, "")
-        if not self.items:
+        # 隐身模式下敲的字母只存在候选框里（不落进 eNSP）。如果一条都没匹配上就直接
+        # 把框隐藏，用户既看不见自己敲了什么、那串字也没进 eNSP，接着按回车就全丢了
+        # （回车是"原样放行、不落字"）。所以"有输入但无匹配"必须保留窗口提示。
+        if not self.items and (manual_lookup or not search_text.strip()):
+            self.window_should_show = False
             self.hide()
             return
+        if not self.items:
+            self.pages = 1
+            self.total = 0
+        self.window_should_show = True
         if manual_lookup:
             header_text = f"◄ {self.page + 1}/{self.pages} ► 共 {self.total} | ←/- 上页 | →/= 下页 | Esc关闭"
             footer_text = f"  中文查询：{search_text}   仅查命令，不自动输入"
             hint_text = ""
         else:
-            header_text = f"◄ {self.page + 1}/{self.pages} ► 共 {self.total} | ←/- 上页 | →/= 下页 | 1-{PAGE_SIZE}选择 | Esc"
+            if not self.items:
+                header_text = "无匹配命令 | 空格 或 Esc 把已敲的字落进 eNSP | 退格删字"
+            else:
+                header_text = f"◄ {self.page + 1}/{self.pages} ► 共 {self.total} | ←/- 上页 | →/= 下页 | 1-{PAGE_SIZE}选择 | Esc"
             footer_text = f"  输入：{self.buffer}   查询：{search_text}   视图：{self.current_view}   不自动回车"
             hint_text = candidate_hint_text(search_text, self.items)
         visible = self.items[:PAGE_SIZE]
@@ -2909,8 +2932,8 @@ class App:
         for item in visible:
             risk = {"low": "", "medium": "  中风险", "high": "  高风险"}.get(item["risk"], "")
             rendered_rows.append((item["insert"] or item["command"], item["description"] + risk, item["risk"]))
-        max_command_px = max(self.command_font.measure(row[0]) for row in rendered_rows)
-        max_description_px = max(self.description_font.measure(row[1]) for row in rendered_rows)
+        max_command_px = max((self.command_font.measure(row[0]) for row in rendered_rows), default=0)
+        max_description_px = max((self.description_font.measure(row[1]) for row in rendered_rows), default=0)
         layout = fit_candidate_layout(
             max_command_px,
             max_description_px,
@@ -3673,6 +3696,10 @@ class App:
              "steps": [{"input": "dis"}, {"input": " "}, {"input": "i", "target_prefix": "i"}]},
             {"name": "ghost_space_then_digit", "input": "dis", "expected": "dis 1", "view": "user-view",
              "steps": [{"input": "dis"}, {"input": " "}, {"press": 0x31}]},
+            # 敲一条谁都匹配不到的东西：候选框必须继续显示（原来会直接隐藏，
+            # 字被静默扣在 buffer 里，用户看不见、再按回车就全丢）
+            {"name": "ghost_no_match_keeps_candidates", "input": "zzzz", "expected": "zzzz", "view": "user-view",
+             "steps": [{"input": "zzzz", "expect_visible": True}, {"input": " "}]},
         ]
         report = {"ok": False, "steps": [], "resultPath": str(result_path), "cases": []}
         proc = None
@@ -3728,6 +3755,12 @@ class App:
                             continue
                         self.smoke_type_text(step["input"])
                         time.sleep(1.0)
+                        if step.get("expect_visible"):
+                            # 黑盒断言：真窗口、真按键之后，候选框不能是隐藏状态
+                            state = self.root.state()
+                            case_report["visibleAfterTyping"] = state
+                            if state == "withdrawn":
+                                raise RuntimeError("candidate window withdrawn while buffer=" + repr(self.buffer))
                         if not (step.get("target") or step.get("target_prefix")):
                             continue
                         target = step.get("target")
@@ -4327,6 +4360,83 @@ def run_self_test() -> int:
         and manual_close_stub.hidden,
         f"result={manual_close_result} buffer={manual_close_stub.buffer} hidden={manual_close_stub.hidden}"
     )
+
+    # 有输入却一条都没匹配上时，候选框绝不能隐藏：隐身模式下敲的字只存在框里，
+    # 框一消失用户既看不见、字也没进 eNSP，接着按回车就全丢了。
+    class _StubLabel:
+        def config(self, **kwargs):
+            pass
+
+    class _StubFrame:
+        def grid_columnconfigure(self, *args, **kwargs):
+            pass
+
+    class _StubFont:
+        def measure(self, text):
+            return len(str(text)) * 7
+
+    class _StubRoot:
+        def __init__(self):
+            self.withdrawn = False
+
+        def withdraw(self):
+            self.withdrawn = True
+
+        def winfo_screenwidth(self):
+            return 1920
+
+        def winfo_reqheight(self):
+            return 200
+
+        def update_idletasks(self):
+            pass
+
+        def geometry(self, spec):
+            pass
+
+    def _make_render_stub(buffer, matches):
+        root = _StubRoot()
+        stub = type("T", (), {
+            "root": root,
+            "store": type("S", (), {"search": lambda s, *a: (matches, 1, len(matches))})(),
+            "search_text": lambda s: buffer,
+            "buffer": buffer,
+            "page": 0,
+            "pages": 1,
+            "total": 0,
+            "current_view": "any",
+            "items": list(matches),
+            "manual_lookup_active": False,
+            "command_font": _StubFont(),
+            "description_font": _StubFont(),
+            "header_font": _StubFont(),
+            "footer_font": _StubFont(),
+            "hint_font": _StubFont(),
+            "rows": [(_StubFrame(), _StubLabel(), _StubLabel(), _StubLabel()) for _ in range(PAGE_SIZE)],
+            "header": _StubLabel(),
+            "footer": _StubLabel(),
+            "hint": _StubLabel(),
+            "hidden": False,
+            "hide": lambda s: (setattr(s, "hidden", True), root.withdraw()),
+        })()
+        return root, stub
+
+    _root_a, _stub_a = _make_render_stub("zzzz", [])
+    App.render(_stub_a)
+    check(
+        "no_match_with_input_keeps_window",
+        _stub_a.hidden is False and getattr(_stub_a, "window_should_show", False) and _root_a.withdrawn is False,
+        f"hidden={_stub_a.hidden} show={getattr(_stub_a, 'window_should_show', None)} withdrawn={_root_a.withdrawn}",
+    )
+
+    _root_b, _stub_b = _make_render_stub("", [])
+    App.render(_stub_b)
+    check(
+        "no_match_without_input_hides_window",
+        _stub_b.hidden is True and _root_b.withdrawn is True,
+        f"hidden={_stub_b.hidden} withdrawn={_root_b.withdrawn}",
+    )
+
     manual_release_stub = type("T", (), {
         "root": type("R", (), {"after": lambda self, delay, cb: cb()})(),
         "manual_query_var": type("V", (), {"get": lambda self: "查看路由"})(),
