@@ -3425,6 +3425,7 @@ class App:
         # 所以这类收尾字符必须用真按键补，不能塞进粘贴内容里。
         if not text and tail_key is None:
             return True
+        _t0 = time.time()
         self.suppress_key_events = 0
         target_hwnd = self.last_target_hwnd or self.user32.GetForegroundWindow()
         if not target_hwnd:
@@ -3446,12 +3447,27 @@ class App:
             if target_hwnd:
                 self.user32.SetForegroundWindow(target_hwnd)
                 time.sleep(0.05)
-            if clipboard_ready and self.read_clipboard_text() == text:
+            # 这里不要再重读一遍剪贴板。上面的循环已经校验过了；中间夹了一次抢前台，
+            # 期间别的程序可能短暂占用剪贴板（读回来是 None），或者被我们排的
+            # "还原剪贴板"任务改掉 —— 于是白白退化成逐键敲，慢 5 倍以上。
+            # 实测：不重读时 6 次全走剪贴板；重读时 6 次里有 2 次退化成逐键敲。
+            if clipboard_ready:
+                via = "clipboard"
                 self.send_ctrl_v()
             else:
+                # 退化路径：一个键一个键敲，慢得多。日志里记下来，便于查为什么没走剪贴板。
+                via = "keys"
                 self.send_text(text)
+            App.maybe_log_page_trace(self, "ghost_insert", text=text, via=via,
+                                     clipboard_ready=bool(clipboard_ready),
+                                     tail_key=tail_key, ms=int((time.time() - _t0) * 1000))
             if previous_clipboard is not None:
-                self.root.after(5000, lambda value=previous_clipboard: self.restore_clipboard_text(value))
+                def _restore(value=previous_clipboard, mine=text):
+                    # 只有剪贴板里还是我们刚写的那段时才还原。否则说明这 5 秒内
+                    # 又提交了新内容，硬还原会把新内容冲掉（下一个提交就会退化成逐键敲）。
+                    if self.read_clipboard_text() == mine:
+                        self.restore_clipboard_text(value)
+                self.root.after(5000, _restore)
         if tail_key is not None:
             time.sleep(0.05)
             self.send_key(tail_key)
@@ -3740,6 +3756,9 @@ class App:
             # 否则第二下会抢在字前面被执行，控制台读到的是空行（半截都没有）。
             {"name": "ghost_enter_double_tap_keeps_order", "input": "zzzz", "expected": "zzzz", "view": "user-view",
              "steps": [{"input": "zzzz"}, {"press": 0x0D}, {"press": 0x0D}]},
+            # 长文本落字：短串看不出差别，长串才能看出走剪贴板(快)还是退化成逐键敲(慢十倍)
+            {"name": "ghost_long_text_commit", "input": "z" * 30, "expected": "z" * 30, "view": "user-view",
+             "steps": [{"input": "z" * 30}, {"input": " "}]},
         ]
         report = {"ok": False, "steps": [], "resultPath": str(result_path), "cases": []}
         proc = None
