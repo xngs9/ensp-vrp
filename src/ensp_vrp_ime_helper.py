@@ -2589,6 +2589,10 @@ class App:
         self.pending_command = ""
         self.suppress_until = 0
         self.suppress_key_events = 0
+        # 有字正在往 eNSP 送（送一趟要花一点时间）。这期间按下的回车要先扣住，
+        # 等字落地再放行，否则 eNSP 会先执行眼前那半截命令。
+        self.commit_in_flight = False
+        self.queued_enter = False
         self.candidate_closed_by_escape = False
         self.tail_search_mode = False
         self.replace_current_token_only = False
@@ -3165,7 +3169,13 @@ class App:
             self.page = 0
             App.schedule_ui(self, self.hide)
         if vk == Keyboard.VK_RETURN:
+            if self.commit_in_flight:
+                # 有字正在往 eNSP 送。这一下回车先扣住不放行：等字到了再替用户放行，
+                # 否则 eNSP 会先执行眼前那半截命令（行里还缺后面那段字）。
+                self.queued_enter = True
+                return True
             entered = self.pending_command or self.buffer
+            pending = self.buffer
             if entered:
                 self.current_view = infer_view_after_enter(entered, self.current_view)
             self.pending_command = ""
@@ -3179,6 +3189,12 @@ class App:
             self.replace_current_token_only = False
             self.invisible_input = True
             App.schedule_ui(self, self.hide)
+            if pending:
+                # 候选框里还有没落地的字：这一下回车只把它【写进 eNSP】，不执行
+                # （跟输入法一样：回车是把字落下去，不是把命令跑起来）。
+                # 要执行请再按一次回车，那次会原样放行给 eNSP。
+                self.commit_buffer_to_host(pending.rstrip())
+                return True
             return False
         if self.suppress_key_events > 0:
             self.suppress_key_events -= 1
@@ -3247,7 +3263,19 @@ class App:
         if not text and tail_key is None:
             return
         App.maybe_log_page_trace(self, "ghost_commit", text=text, tail_key=tail_key)
-        App.schedule_ui(self, lambda value=text, key=tail_key: self.type_into_host(value, key))
+        self.commit_in_flight = True
+
+        def finish():
+            ok = self.type_into_host(text, tail_key)
+            queued = self.queued_enter
+            self.queued_enter = False
+            self.commit_in_flight = False
+            if ok and queued:
+                # 落字期间用户按过回车（当时扣住没放行）：现在替他放行，
+                # 这样 eNSP 执行到的是完整那行，而不是半截。
+                self.send_key(Keyboard.VK_RETURN)
+
+        App.schedule_ui(self, finish)
 
     def handle_escape_key(self):
         # Esc：把组好的词原样落进 eNSP 输入行，然后退出隐身，方便接着手改。
@@ -3396,13 +3424,16 @@ class App:
         # tail_key 是"跟在后面"的一个按键（比如空格）：粘贴会把尾部空格吃掉，
         # 所以这类收尾字符必须用真按键补，不能塞进粘贴内容里。
         if not text and tail_key is None:
-            return
+            return True
         self.suppress_key_events = 0
         target_hwnd = self.last_target_hwnd or self.user32.GetForegroundWindow()
-        if target_hwnd:
-            self.user32.ShowWindow(target_hwnd, 5)
-            self.user32.SetForegroundWindow(target_hwnd)
-            time.sleep(0.12)
+        if not target_hwnd:
+            # 没有目标窗口：字一个字都进不去。必须如实返回失败，
+            # 否则调用方会以为送成功了、接着去执行——eNSP 就会执行控制台里残留的东西。
+            return False
+        self.user32.ShowWindow(target_hwnd, 5)
+        self.user32.SetForegroundWindow(target_hwnd)
+        time.sleep(0.12)
         if text:
             previous_clipboard = self.read_clipboard_text()
             clipboard_ready = self.write_clipboard_text(text)
@@ -3424,6 +3455,7 @@ class App:
         if tail_key is not None:
             time.sleep(0.05)
             self.send_key(tail_key)
+        return True
 
     def choose(self, item):
         text = item["insert"] or item["command"]
@@ -3700,6 +3732,14 @@ class App:
             # 字被静默扣在 buffer 里，用户看不见、再按回车就全丢）
             {"name": "ghost_no_match_keeps_candidates", "input": "zzzz", "expected": "zzzz", "view": "user-view",
              "steps": [{"input": "zzzz", "expect_visible": True}, {"input": " "}]},
+            # 回车：候选框里还有没落地的字 → 把字【写进】eNSP，但不执行（跟输入法一样）。
+            # 这一下只写；最后那下由测试框架自己按的回车负责执行。
+            {"name": "ghost_enter_writes_without_executing", "input": "zzzz", "expected": "zzzz", "view": "user-view",
+             "steps": [{"input": "zzzz"}, {"press": 0x0D}]},
+            # 连按两下回车：第二下落在"字还在路上"的窗口里，必须被扣住、等字落地再放行，
+            # 否则第二下会抢在字前面被执行，控制台读到的是空行（半截都没有）。
+            {"name": "ghost_enter_double_tap_keeps_order", "input": "zzzz", "expected": "zzzz", "view": "user-view",
+             "steps": [{"input": "zzzz"}, {"press": 0x0D}, {"press": 0x0D}]},
         ]
         report = {"ok": False, "steps": [], "resultPath": str(result_path), "cases": []}
         proc = None
@@ -4435,6 +4475,62 @@ def run_self_test() -> int:
         "no_match_without_input_hides_window",
         _stub_b.hidden is True and _root_b.withdrawn is True,
         f"hidden={_stub_b.hidden} withdrawn={_root_b.withdrawn}",
+    )
+
+    # 回车的行为：候选框里还有没落地的字 → 只"写进 eNSP"，不执行（跟输入法一样）；
+    # 落字期间按下的回车要先扣住，等字落地再放行；没有未落地的字 → 原样放行。
+    def _make_enter_stub(buffer="", commit_in_flight=False):
+        calls = {}
+
+        def _commit(self, text, tail_key=None):
+            calls["committed"] = (text, tail_key)
+
+        stub = type("T", (), {
+            "smoke_mode": False,
+            "is_own_window_foreground": lambda s: False,
+            "manual_lookup_active": False,
+            "commit_in_flight": commit_in_flight,
+            "queued_enter": False,
+            "pending_command": "",
+            "buffer": buffer,
+            "current_view": "user-view",
+            "host_buffer_len": 0,
+            "ctrl_query_mode": False,
+            "ctrl_virtual_len": 0,
+            "ctrl_space_latched": False,
+            "candidate_closed_by_escape": False,
+            "tail_search_mode": False,
+            "replace_current_token_only": False,
+            "invisible_input": False,
+            "items": [],
+            "page": 0,
+            "hide": lambda s: None,
+            "commit_buffer_to_host": _commit,
+        })()
+        return stub, calls
+
+    _s1, _c1 = _make_enter_stub(buffer="R1")
+    _r1 = App.on_key(_s1, Keyboard.VK_RETURN)
+    check(
+        "enter_with_pending_writes_without_executing",
+        _r1 is True and _s1.buffer == "" and _c1.get("committed") == ("R1", None),
+        f"result={_r1} buffer={_s1.buffer!r} committed={_c1.get('committed')}",
+    )
+
+    _s2, _c2 = _make_enter_stub(buffer="R1", commit_in_flight=True)
+    _r2 = App.on_key(_s2, Keyboard.VK_RETURN)
+    check(
+        "enter_during_commit_is_held_back",
+        _r2 is True and _s2.queued_enter is True and not _c2,
+        f"result={_r2} queued={_s2.queued_enter} committed={_c2}",
+    )
+
+    _s3, _c3 = _make_enter_stub(buffer="")
+    _r3 = App.on_key(_s3, Keyboard.VK_RETURN)
+    check(
+        "enter_without_pending_passes_through",
+        _r3 is False and not _c3,
+        f"result={_r3} committed={_c3}",
     )
 
     manual_release_stub = type("T", (), {
