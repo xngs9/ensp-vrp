@@ -4835,12 +4835,12 @@
     "risk": "medium"
   },
   "filter-policy acl-name": {
-    "description": "配置过滤器 策略 ACL",
+    "description": "配置过滤器 策略 ACL 名称",
     "view": "system-view",
     "risk": "low"
   },
   "undo filter-policy acl-name": {
-    "description": "撤销或恢复缺省：配置过滤器 策略 ACL",
+    "description": "撤销或恢复缺省：配置过滤器 策略 ACL 名称",
     "view": "system-view",
     "risk": "medium"
   },
@@ -5075,12 +5075,12 @@
     "risk": "medium"
   },
   "ipv6 address auto link-local": {
-    "description": "配置 IPv6 地址 AUTO 链路 本地",
+    "description": "配置 IPv6 地址 自动 链路 本地",
     "view": "system-view",
     "risk": "low"
   },
   "undo ipv6 address auto link-local": {
-    "description": "撤销或恢复缺省：配置 IPv6 地址 AUTO 链路 本地",
+    "description": "撤销或恢复缺省：配置 IPv6 地址 自动 链路 本地",
     "view": "system-view",
     "risk": "medium"
   },
@@ -5230,12 +5230,12 @@
     "risk": "medium"
   },
   "isis psnp-high-priority": {
-    "description": "配置 ISIS 优先级",
+    "description": "配置 ISIS 高 优先级",
     "view": "system-view",
     "risk": "low"
   },
   "undo isis psnp-high-priority": {
-    "description": "撤销或恢复缺省：配置 ISIS 优先级",
+    "description": "撤销或恢复缺省：配置 ISIS 高 优先级",
     "view": "system-view",
     "risk": "medium"
   },
@@ -5970,12 +5970,12 @@
     "risk": "medium"
   },
   "negotiation auto": {
-    "description": "配置协商 AUTO",
+    "description": "配置协商 自动",
     "view": "system-view",
     "risk": "low"
   },
   "undo negotiation auto": {
-    "description": "撤销或恢复缺省：配置协商 AUTO",
+    "description": "撤销或恢复缺省：配置协商 自动",
     "view": "system-view",
     "risk": "medium"
   },
@@ -6175,12 +6175,12 @@
     "risk": "medium"
   },
   "port-auto-sleep enable": {
-    "description": "配置端口 使能",
+    "description": "配置端口 自动 使能",
     "view": "system-view",
     "risk": "low"
   },
   "undo port-auto-sleep enable": {
-    "description": "撤销或恢复缺省：配置端口 使能",
+    "description": "撤销或恢复缺省：配置端口 自动 使能",
     "view": "system-view",
     "risk": "medium"
   },
@@ -6525,12 +6525,12 @@
     "risk": "medium"
   },
   "set multicast-hash-mode lsb": {
-    "description": "配置 SET 组播 方式 LSB",
+    "description": "配置 SET 组播 方式 低位",
     "view": "system-view",
     "risk": "low"
   },
   "undo set multicast-hash-mode lsb": {
-    "description": "撤销或恢复缺省：配置 SET 组播 方式 LSB",
+    "description": "撤销或恢复缺省：配置 SET 组播 方式 低位",
     "view": "system-view",
     "risk": "medium"
   },
@@ -6755,12 +6755,12 @@
     "risk": "medium"
   },
   "snmp-agent trap enable test-packet": {
-    "description": "配置 SNMP 管理 Trap 告警 使能 报文",
+    "description": "配置 SNMP 管理 Trap 告警 使能 测试 报文",
     "view": "system-view",
     "risk": "low"
   },
   "undo snmp-agent trap enable test-packet": {
-    "description": "撤销或恢复缺省：配置 SNMP 管理 Trap 告警 使能 报文",
+    "description": "撤销或恢复缺省：配置 SNMP 管理 Trap 告警 使能 测试 报文",
     "view": "system-view",
     "risk": "medium"
   },
@@ -6775,12 +6775,12 @@
     "risk": "medium"
   },
   "speed auto-negotiation": {
-    "description": "配置速率 协商",
+    "description": "配置速率 自动 协商",
     "view": "interface-view",
     "risk": "low"
   },
   "undo speed auto-negotiation": {
-    "description": "撤销或恢复缺省：配置速率 协商",
+    "description": "撤销或恢复缺省：配置速率 自动 协商",
     "view": "interface-view",
     "risk": "medium"
   },
@@ -7445,7 +7445,7 @@
     "risk": "low"
   },
   "acl ipv6 name": {
-    "description": "配置 ACL IPv6 NAME",
+    "description": "配置 ACL IPv6 名称",
     "view": "acl-view",
     "risk": "low"
   },
@@ -7495,7 +7495,7 @@
     "risk": "low"
   },
   "alarm-name": {
-    "description": "配置告警",
+    "description": "配置告警 名称",
     "view": "system-view",
     "risk": "low"
   },
@@ -7560,7 +7560,7 @@
     "risk": "low"
   },
   "apply backup-nexthop auto": {
-    "description": "配置应用 备份 下一跳 AUTO",
+    "description": "配置应用 备份 下一跳 自动",
     "view": "system-view",
     "risk": "low"
   },
@@ -7870,42 +7870,42 @@
     "risk": "low"
   },
   "auto duplex": {
-    "description": "配置 AUTO 双工",
+    "description": "配置自动 双工",
     "view": "system-view",
     "risk": "low"
   },
   "auto duplex half": {
-    "description": "配置 AUTO 双工 HALF",
+    "description": "配置自动 双工 HALF",
     "view": "system-view",
     "risk": "low"
   },
   "auto duplex full": {
-    "description": "配置 AUTO 双工 FULL",
+    "description": "配置自动 双工 FULL",
     "view": "system-view",
     "risk": "low"
   },
   "auto speed": {
-    "description": "配置 AUTO 速率",
+    "description": "配置自动 速率",
     "view": "system-view",
     "risk": "low"
   },
   "auto speed 10": {
-    "description": "配置 AUTO 速率",
+    "description": "配置自动 速率",
     "view": "system-view",
     "risk": "low"
   },
   "auto speed 100": {
-    "description": "配置 AUTO 速率",
+    "description": "配置自动 速率",
     "view": "system-view",
     "risk": "low"
   },
   "auto speed 1000": {
-    "description": "配置 AUTO 速率",
+    "description": "配置自动 速率",
     "view": "system-view",
     "risk": "low"
   },
   "auto-build": {
-    "description": "配置构建",
+    "description": "配置自动 构建",
     "view": "system-view",
     "risk": "low"
   },
@@ -7935,7 +7935,7 @@
     "risk": "low"
   },
   "auto-cost enable": {
-    "description": "配置开销 使能",
+    "description": "配置自动 开销 使能",
     "view": "system-view",
     "risk": "low"
   },
@@ -8190,7 +8190,7 @@
     "risk": "low"
   },
   "cfm portid-tlv type interface-name": {
-    "description": "配置 CFM 类型 接口",
+    "description": "配置 CFM 类型 接口 名称",
     "view": "system-view",
     "risk": "low"
   },
@@ -8390,7 +8390,7 @@
     "risk": "low"
   },
   "combo-port auto": {
-    "description": "配置组合端口 AUTO",
+    "description": "配置组合端口 自动",
     "view": "system-view",
     "risk": "low"
   },
@@ -9505,12 +9505,12 @@
     "risk": "low"
   },
   "display acl ipv6 dbg name": {
-    "description": "查看 ACL IPv6 DBG NAME",
+    "description": "查看 ACL IPv6 DBG 名称",
     "view": "user-view",
     "risk": "low"
   },
   "display acl ipv6 name": {
-    "description": "查看 ACL IPv6 NAME",
+    "description": "查看 ACL IPv6 名称",
     "view": "user-view",
     "risk": "low"
   },
@@ -9805,7 +9805,7 @@
     "risk": "low"
   },
   "display bfd configuration static-auto": {
-    "description": "查看 BFD 配置 静态",
+    "description": "查看 BFD 配置 静态 自动",
     "view": "user-view",
     "risk": "low"
   },
@@ -11355,7 +11355,7 @@
     "risk": "low"
   },
   "display isis name-table": {
-    "description": "查看 ISIS 表",
+    "description": "查看 ISIS 名称 表",
     "view": "user-view",
     "risk": "low"
   },
@@ -13310,7 +13310,7 @@
     "risk": "low"
   },
   "display test-packet result": {
-    "description": "查看报文 结果",
+    "description": "查看测试 报文 结果",
     "view": "user-view",
     "risk": "low"
   },
@@ -13570,7 +13570,7 @@
     "risk": "low"
   },
   "dldp unidirectional-shutdown auto": {
-    "description": "配置 DLDP 关闭 AUTO",
+    "description": "配置 DLDP 关闭 自动",
     "view": "system-view",
     "risk": "low"
   },
@@ -13810,17 +13810,17 @@
     "risk": "low"
   },
   "error-down auto-recovery cause": {
-    "description": "配置错误关闭 恢复 原因",
+    "description": "配置错误关闭 自动 恢复 原因",
     "view": "system-view",
     "risk": "low"
   },
   "error-shutdown auto-recovery cause efm-threshold-event": {
-    "description": "配置错误 关闭 恢复 原因 阈值 事件",
+    "description": "配置错误 关闭 自动 恢复 原因 阈值 事件",
     "view": "system-view",
     "risk": "low"
   },
   "error-shutdown auto-recovery interval": {
-    "description": "配置错误 关闭 恢复 间隔",
+    "description": "配置错误 关闭 自动 恢复 间隔",
     "view": "system-view",
     "risk": "low"
   },
@@ -13835,7 +13835,7 @@
     "risk": "low"
   },
   "e-trunk track bfd-session session-name": {
-    "description": "配置干道 联动跟踪 BFD 会话 会话",
+    "description": "配置干道 联动跟踪 BFD 会话 会话 名称",
     "view": "system-view",
     "risk": "low"
   },
@@ -13855,7 +13855,7 @@
     "risk": "low"
   },
   "fan speed auto": {
-    "description": "配置 FAN 速率 AUTO",
+    "description": "配置 FAN 速率 自动",
     "view": "system-view",
     "risk": "low"
   },
@@ -14565,17 +14565,17 @@
     "risk": "low"
   },
   "import-route isis level-1 into level-2": {
-    "description": "配置导入 路由 ISIS 一级 INTO 二级",
+    "description": "配置导入 路由 ISIS 一级 到 二级",
     "view": "system-view",
     "risk": "low"
   },
   "import-route isis level-2 into level-1": {
-    "description": "配置导入 路由 ISIS 二级 INTO 一级",
+    "description": "配置导入 路由 ISIS 二级 到 一级",
     "view": "system-view",
     "risk": "low"
   },
   "import-route isis level-2 into level-1 acl": {
-    "description": "配置导入 路由 ISIS 二级 INTO 一级 ACL",
+    "description": "配置导入 路由 ISIS 二级 到 一级 ACL",
     "view": "system-view",
     "risk": "low"
   },
@@ -14800,7 +14800,7 @@
     "risk": "low"
   },
   "ipv6 auto-cost enable": {
-    "description": "配置 IPv6 开销 使能",
+    "description": "配置 IPv6 自动 开销 使能",
     "view": "system-view",
     "risk": "low"
   },
@@ -14875,12 +14875,12 @@
     "risk": "low"
   },
   "ipv6 import-route isis level-1 into level-2": {
-    "description": "配置 IPv6 导入 路由 ISIS 一级 INTO 二级",
+    "description": "配置 IPv6 导入 路由 ISIS 一级 到 二级",
     "view": "system-view",
     "risk": "low"
   },
   "ipv6 import-route isis level-2 into level-1": {
-    "description": "配置 IPv6 导入 路由 ISIS 二级 INTO 一级",
+    "description": "配置 IPv6 导入 路由 ISIS 二级 到 一级",
     "view": "system-view",
     "risk": "low"
   },
@@ -15100,7 +15100,7 @@
     "risk": "low"
   },
   "isis test": {
-    "description": "配置 ISIS TEST",
+    "description": "配置 ISIS 测试",
     "view": "system-view",
     "risk": "low"
   },
@@ -15515,7 +15515,7 @@
     "risk": "low"
   },
   "mac-address hash-mode lsb slot": {
-    "description": "配置 MAC 地址 方式 LSB 槽位",
+    "description": "配置 MAC 地址 方式 低位 槽位",
     "view": "system-view",
     "risk": "low"
   },
@@ -15665,7 +15665,7 @@
     "risk": "low"
   },
   "mdi auto": {
-    "description": "配置 MDI AUTO",
+    "description": "配置 MDI 自动",
     "view": "system-view",
     "risk": "low"
   },
@@ -15840,7 +15840,7 @@
     "risk": "low"
   },
   "mpls l2vpn service-name": {
-    "description": "配置 MPLS 二层 VPN 服务",
+    "description": "配置 MPLS 二层 VPN 服务 名称",
     "view": "system-view",
     "risk": "low"
   },
@@ -16110,22 +16110,22 @@
     "risk": "low"
   },
   "multicast mping-test invoke-get-ifinfo group": {
-    "description": "配置组播 获取 组",
+    "description": "配置组播 测试 获取 组",
     "view": "system-view",
     "risk": "low"
   },
   "multicast mtrace-test invoke-check-lasthop source": {
-    "description": "配置组播 检查 源",
+    "description": "配置组播 测试 检查 源",
     "view": "system-view",
     "risk": "low"
   },
   "multicast mtrace-test invoke-check-rpf": {
-    "description": "配置组播 检查 反向路径转发",
+    "description": "配置组播 测试 检查 反向路径转发",
     "view": "system-view",
     "risk": "low"
   },
   "multicast mtrace-test invoke-check-rpf source": {
-    "description": "配置组播 检查 反向路径转发 源",
+    "description": "配置组播 测试 检查 反向路径转发 源",
     "view": "system-view",
     "risk": "low"
   },
@@ -16320,7 +16320,7 @@
     "risk": "low"
   },
   "nqa test-instance": {
-    "description": "配置 NQA 实例",
+    "description": "配置 NQA 测试 实例",
     "view": "system-view",
     "risk": "low"
   },
@@ -16520,7 +16520,7 @@
     "risk": "low"
   },
   "ospf router-id auto-recover disable": {
-    "description": "配置 OSPF 路由器 ID 禁用",
+    "description": "配置 OSPF 路由器 ID 自动 禁用",
     "view": "ospf-view",
     "risk": "low"
   },
@@ -17025,7 +17025,7 @@
     "risk": "low"
   },
   "prefix-priority high ip-prefix": {
-    "description": "配置前缀优先级 HIGH IP 前缀列表",
+    "description": "配置前缀优先级 高 IP 前缀列表",
     "view": "system-view",
     "risk": "low"
   },
@@ -17064,23 +17064,28 @@
     "view": "system-view",
     "risk": "low"
   },
+  "protect-switch": {
+    "description": "配置保护倒换",
+    "view": "system-view",
+    "risk": "low"
+  },
   "protect-switch force": {
-    "description": "配置强制",
+    "description": "配置保护倒换 强制",
     "view": "system-view",
     "risk": "low"
   },
   "protect-switch manual": {
-    "description": "配置手动",
+    "description": "配置保护倒换 手动",
     "view": "system-view",
     "risk": "low"
   },
   "protect-switch lock": {
-    "description": "配置 LOCK",
+    "description": "配置保护倒换 锁定",
     "view": "system-view",
     "risk": "low"
   },
   "protect-switch clear": {
-    "description": "配置清除",
+    "description": "配置保护倒换 清除",
     "view": "system-view",
     "risk": "low"
   },
@@ -17295,7 +17300,7 @@
     "risk": "high"
   },
   "reset acl ipv6 counter name": {
-    "description": "清除或重置 ACL IPv6 计数器 NAME",
+    "description": "清除或重置 ACL IPv6 计数器 名称",
     "view": "user-view",
     "risk": "high"
   },
@@ -18230,7 +18235,7 @@
     "risk": "low"
   },
   "rip metricout acl-name": {
-    "description": "配置 RIP 出方向度量值 ACL",
+    "description": "配置 RIP 出方向度量值 ACL 名称",
     "view": "system-view",
     "risk": "low"
   },
@@ -19040,7 +19045,7 @@
     "risk": "low"
   },
   "stp compliance auto": {
-    "description": "配置 STP 兼容性 AUTO",
+    "description": "配置 STP 兼容性 自动",
     "view": "system-view",
     "risk": "low"
   },
@@ -19135,7 +19140,7 @@
     "risk": "low"
   },
   "stp point-to-point auto": {
-    "description": "配置 STP 到 AUTO",
+    "description": "配置 STP 到 自动",
     "view": "system-view",
     "risk": "low"
   },
@@ -19280,122 +19285,122 @@
     "risk": "low"
   },
   "test cdev": {
-    "description": "配置 TEST CDEV",
+    "description": "配置测试 CDEV",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev cdev_cpbsp slot": {
-    "description": "配置 TEST CDEV 槽位",
+    "description": "配置测试 CDEV 槽位",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev cdev_pub slot": {
-    "description": "配置 TEST CDEV 槽位",
+    "description": "配置测试 CDEV 槽位",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev plug-in slot": {
-    "description": "配置 TEST CDEV 槽位",
+    "description": "配置测试 CDEV 槽位",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev pull-out slot": {
-    "description": "配置 TEST CDEV 槽位",
+    "description": "配置测试 CDEV 槽位",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev backup batch dev-backtype": {
-    "description": "配置 TEST CDEV 备份 批量 设备背板类型",
+    "description": "配置测试 CDEV 备份 批量 设备背板类型",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-attr": {
-    "description": "配置 TEST CDEV 实体属性",
+    "description": "配置测试 CDEV 实体属性",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-attr add entity-id": {
-    "description": "配置 TEST CDEV 实体属性 ADD 实体 ID",
+    "description": "配置测试 CDEV 实体属性 ADD 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-attr update entity-id": {
-    "description": "配置 TEST CDEV 实体属性 更新 实体 ID",
+    "description": "配置测试 CDEV 实体属性 更新 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-attr query entity-id": {
-    "description": "配置 TEST CDEV 实体属性 查询 实体 ID",
+    "description": "配置测试 CDEV 实体属性 查询 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-attr delete entity-id": {
-    "description": "配置 TEST CDEV 实体属性 实体 ID",
+    "description": "配置测试 CDEV 实体属性 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-attr copy-attr-req": {
-    "description": "配置 TEST CDEV 实体属性 复制属性请求",
+    "description": "配置测试 CDEV 实体属性 复制属性请求",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-attr reg-attr-req entity-id": {
-    "description": "配置 TEST CDEV 实体属性 注册属性请求 实体 ID",
+    "description": "配置测试 CDEV 实体属性 注册属性请求 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-attr reg-attr-req": {
-    "description": "配置 TEST CDEV 实体属性 注册属性请求",
+    "description": "配置测试 CDEV 实体属性 注册属性请求",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-tree": {
-    "description": "配置 TEST CDEV 实体树",
+    "description": "配置测试 CDEV 实体树",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-tree add entity-id": {
-    "description": "配置 TEST CDEV 实体树 ADD 实体 ID",
+    "description": "配置测试 CDEV 实体树 ADD 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-tree query entity-id": {
-    "description": "配置 TEST CDEV 实体树 查询 实体 ID",
+    "description": "配置测试 CDEV 实体树 查询 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-tree delete entity-id": {
-    "description": "配置 TEST CDEV 实体树 实体 ID",
+    "description": "配置测试 CDEV 实体树 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-tree delete-entity-tree entity-id": {
-    "description": "配置 TEST CDEV 实体树 实体 ID",
+    "description": "配置测试 CDEV 实体树 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-tree delete-entity-child entity-id": {
-    "description": "配置 TEST CDEV 实体树 实体 ID",
+    "description": "配置测试 CDEV 实体树 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-tree copy entity-id": {
-    "description": "配置 TEST CDEV 实体树 COPY 实体 ID",
+    "description": "配置测试 CDEV 实体树 COPY 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "test ttl": {
-    "description": "配置 TEST TTL",
+    "description": "配置测试 TTL",
     "view": "system-view",
     "risk": "low"
   },
   "test ttl pipe": {
-    "description": "配置 TEST TTL PIPE",
+    "description": "配置测试 TTL PIPE",
     "view": "system-view",
     "risk": "low"
   },
   "test ttl uniform": {
-    "description": "配置 TEST TTL 统一模式",
+    "description": "配置测试 TTL 统一模式",
     "view": "system-view",
     "risk": "low"
   },
@@ -19405,52 +19410,52 @@
     "risk": "low"
   },
   "test-packet start interface": {
-    "description": "配置报文 启动 接口",
+    "description": "配置测试 报文 启动 接口",
     "view": "system-view",
     "risk": "low"
   },
   "test-type dns": {
-    "description": "配置类型 DNS",
+    "description": "配置测试 类型 DNS",
     "view": "system-view",
     "risk": "low"
   },
   "test-type ftp": {
-    "description": "配置类型 FTP",
+    "description": "配置测试 类型 FTP",
     "view": "system-view",
     "risk": "low"
   },
   "test-type http": {
-    "description": "配置类型 HTTP",
+    "description": "配置测试 类型 HTTP",
     "view": "system-view",
     "risk": "low"
   },
   "test-type icmp": {
-    "description": "配置类型 ICMP",
+    "description": "配置测试 类型 ICMP",
     "view": "system-view",
     "risk": "low"
   },
   "test-type jitter": {
-    "description": "配置类型 抖动",
+    "description": "配置测试 类型 抖动",
     "view": "system-view",
     "risk": "low"
   },
   "test-type snmp": {
-    "description": "配置类型 SNMP",
+    "description": "配置测试 类型 SNMP",
     "view": "system-view",
     "risk": "low"
   },
   "test-type tcp": {
-    "description": "配置类型 TCP",
+    "description": "配置测试 类型 TCP",
     "view": "system-view",
     "risk": "low"
   },
   "test-type trace": {
-    "description": "配置类型 跟踪",
+    "description": "配置测试 类型 跟踪",
     "view": "system-view",
     "risk": "low"
   },
   "test-type udp": {
-    "description": "配置类型 UDP",
+    "description": "配置测试 类型 UDP",
     "view": "system-view",
     "risk": "low"
   },
@@ -19890,7 +19895,7 @@
     "risk": "medium"
   },
   "undo alarm-name": {
-    "description": "撤销或恢复缺省：配置告警",
+    "description": "撤销或恢复缺省：配置告警 名称",
     "view": "system-view",
     "risk": "medium"
   },
@@ -20120,12 +20125,12 @@
     "risk": "medium"
   },
   "undo auto duplex": {
-    "description": "撤销或恢复缺省：配置 AUTO 双工",
+    "description": "撤销或恢复缺省：配置自动 双工",
     "view": "system-view",
     "risk": "medium"
   },
   "undo auto speed": {
-    "description": "撤销或恢复缺省：配置 AUTO 速率",
+    "description": "撤销或恢复缺省：配置自动 速率",
     "view": "system-view",
     "risk": "medium"
   },
@@ -20140,7 +20145,7 @@
     "risk": "medium"
   },
   "undo auto-cost enable": {
-    "description": "撤销或恢复缺省：配置开销 使能",
+    "description": "撤销或恢复缺省：配置自动 开销 使能",
     "view": "system-view",
     "risk": "medium"
   },
@@ -21230,7 +21235,7 @@
     "risk": "medium"
   },
   "undo dldp unidirectional-shutdown auto": {
-    "description": "撤销或恢复缺省：配置 DLDP 关闭 AUTO",
+    "description": "撤销或恢复缺省：配置 DLDP 关闭 自动",
     "view": "system-view",
     "risk": "medium"
   },
@@ -21380,7 +21385,7 @@
     "risk": "medium"
   },
   "undo error-down auto-recovery cause": {
-    "description": "撤销或恢复缺省：配置错误关闭 恢复 原因",
+    "description": "撤销或恢复缺省：配置错误关闭 自动 恢复 原因",
     "view": "system-view",
     "risk": "medium"
   },
@@ -22145,27 +22150,27 @@
     "risk": "medium"
   },
   "undo import-route isis level-1 into level-2": {
-    "description": "撤销或恢复缺省：配置导入 路由 ISIS 一级 INTO 二级",
+    "description": "撤销或恢复缺省：配置导入 路由 ISIS 一级 到 二级",
     "view": "system-view",
     "risk": "medium"
   },
   "undo import-route isis level-1 into level-2 filter-policy": {
-    "description": "撤销或恢复缺省：配置导入 路由 ISIS 一级 INTO 二级 过滤器 策略",
+    "description": "撤销或恢复缺省：配置导入 路由 ISIS 一级 到 二级 过滤器 策略",
     "view": "system-view",
     "risk": "medium"
   },
   "undo import-route isis level-2 into level-1": {
-    "description": "撤销或恢复缺省：配置导入 路由 ISIS 二级 INTO 一级",
+    "description": "撤销或恢复缺省：配置导入 路由 ISIS 二级 到 一级",
     "view": "system-view",
     "risk": "medium"
   },
   "undo import-route isis level-2 into level-1 filter-policy": {
-    "description": "撤销或恢复缺省：配置导入 路由 ISIS 二级 INTO 一级 过滤器 策略",
+    "description": "撤销或恢复缺省：配置导入 路由 ISIS 二级 到 一级 过滤器 策略",
     "view": "system-view",
     "risk": "medium"
   },
   "undo import-route isis level-2 into level-1 acl": {
-    "description": "撤销或恢复缺省：配置导入 路由 ISIS 二级 INTO 一级 ACL",
+    "description": "撤销或恢复缺省：配置导入 路由 ISIS 二级 到 一级 ACL",
     "view": "system-view",
     "risk": "medium"
   },
@@ -22345,7 +22350,7 @@
     "risk": "medium"
   },
   "undo ipv6 auto-cost enable": {
-    "description": "撤销或恢复缺省：配置 IPv6 开销 使能",
+    "description": "撤销或恢复缺省：配置 IPv6 自动 开销 使能",
     "view": "system-view",
     "risk": "medium"
   },
@@ -22435,22 +22440,22 @@
     "risk": "medium"
   },
   "undo ipv6 import-route isis level-1 into level-2": {
-    "description": "撤销或恢复缺省：配置 IPv6 导入 路由 ISIS 一级 INTO 二级",
+    "description": "撤销或恢复缺省：配置 IPv6 导入 路由 ISIS 一级 到 二级",
     "view": "system-view",
     "risk": "medium"
   },
   "undo ipv6 import-route isis level-1 into level-2 filter-policy": {
-    "description": "撤销或恢复缺省：配置 IPv6 导入 路由 ISIS 一级 INTO 二级 过滤器 策略",
+    "description": "撤销或恢复缺省：配置 IPv6 导入 路由 ISIS 一级 到 二级 过滤器 策略",
     "view": "system-view",
     "risk": "medium"
   },
   "undo ipv6 import-route isis level-2 into level-1": {
-    "description": "撤销或恢复缺省：配置 IPv6 导入 路由 ISIS 二级 INTO 一级",
+    "description": "撤销或恢复缺省：配置 IPv6 导入 路由 ISIS 二级 到 一级",
     "view": "system-view",
     "risk": "medium"
   },
   "undo ipv6 import-route isis level-2 into level-1 filter-policy": {
-    "description": "撤销或恢复缺省：配置 IPv6 导入 路由 ISIS 二级 INTO 一级 过滤器 策略",
+    "description": "撤销或恢复缺省：配置 IPv6 导入 路由 ISIS 二级 到 一级 过滤器 策略",
     "view": "system-view",
     "risk": "medium"
   },
@@ -23240,7 +23245,7 @@
     "risk": "medium"
   },
   "undo mpls l2vpn service-name": {
-    "description": "撤销或恢复缺省：配置 MPLS 二层 VPN 服务",
+    "description": "撤销或恢复缺省：配置 MPLS 二层 VPN 服务 名称",
     "view": "system-view",
     "risk": "medium"
   },
@@ -23590,7 +23595,7 @@
     "risk": "medium"
   },
   "undo nqa all-test-instance": {
-    "description": "撤销或恢复缺省：配置 NQA 全部 实例",
+    "description": "撤销或恢复缺省：配置 NQA 全部 测试 实例",
     "view": "system-view",
     "risk": "medium"
   },
@@ -24210,7 +24215,7 @@
     "risk": "medium"
   },
   "undo prefix-priority high": {
-    "description": "撤销或恢复缺省：配置前缀优先级 HIGH",
+    "description": "撤销或恢复缺省：配置前缀优先级 高",
     "view": "system-view",
     "risk": "medium"
   },
@@ -24890,7 +24895,7 @@
     "risk": "medium"
   },
   "undo test-type": {
-    "description": "撤销或恢复缺省：配置类型",
+    "description": "撤销或恢复缺省：配置测试 类型",
     "view": "system-view",
     "risk": "medium"
   },
@@ -25250,7 +25255,7 @@
     "risk": "medium"
   },
   "undo voice-vlan mode auto": {
-    "description": "撤销或恢复缺省：配置 VLAN 方式 AUTO",
+    "description": "撤销或恢复缺省：配置 VLAN 方式 自动",
     "view": "system-view",
     "risk": "medium"
   },
@@ -25465,7 +25470,7 @@
     "risk": "low"
   },
   "voice-vlan mode auto": {
-    "description": "配置 VLAN 方式 AUTO",
+    "description": "配置 VLAN 方式 自动",
     "view": "system-view",
     "risk": "low"
   },
@@ -27750,7 +27755,7 @@
     "risk": "low"
   },
   "display bfd session static-auto": {
-    "description": "查看 BFD 会话 静态",
+    "description": "查看 BFD 会话 静态 自动",
     "view": "user-view",
     "risk": "low"
   },
@@ -28485,7 +28490,7 @@
     "risk": "low"
   },
   "e-trunk mode auto": {
-    "description": "配置干道 方式 AUTO",
+    "description": "配置干道 方式 自动",
     "view": "system-view",
     "risk": "low"
   },
@@ -29135,17 +29140,17 @@
     "risk": "low"
   },
   "snmp-agent trap suppress feature-name lsp trap-name": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称",
     "view": "system-view",
     "risk": "low"
   },
   "snmp-agent trap suppress feature-name lsp trap-name mplsxcup trap-interval": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 间隔",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称 Trap 告警 间隔",
     "view": "system-view",
     "risk": "low"
   },
   "snmp-agent trap suppress feature-name lsp trap-name mplsxcdown trap-interval": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 间隔",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称 Trap 告警 间隔",
     "view": "system-view",
     "risk": "low"
   },
@@ -29210,7 +29215,7 @@
     "risk": "medium"
   },
   "undo acl ipv6 name": {
-    "description": "撤销或恢复缺省：配置 ACL IPv6 NAME",
+    "description": "撤销或恢复缺省：配置 ACL IPv6 名称",
     "view": "acl-view",
     "risk": "medium"
   },
@@ -29895,7 +29900,7 @@
     "risk": "medium"
   },
   "undo ospf router-id auto-recover disable": {
-    "description": "撤销或恢复缺省：配置 OSPF 路由器 ID 禁用",
+    "description": "撤销或恢复缺省：配置 OSPF 路由器 ID 自动 禁用",
     "view": "ospf-view",
     "risk": "medium"
   },
@@ -29995,17 +30000,17 @@
     "risk": "medium"
   },
   "undo snmp-agent trap suppress feature-name lsp trap-name": {
-    "description": "撤销或恢复缺省：配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP",
+    "description": "撤销或恢复缺省：配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称",
     "view": "system-view",
     "risk": "medium"
   },
   "undo snmp-agent trap suppress feature-name lsp trap-name mplsxcup trap-interval": {
-    "description": "撤销或恢复缺省：配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 间隔",
+    "description": "撤销或恢复缺省：配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称 Trap 告警 间隔",
     "view": "system-view",
     "risk": "medium"
   },
   "undo snmp-agent trap suppress feature-name lsp trap-name mplsxcdown trap-interval": {
-    "description": "撤销或恢复缺省：配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 间隔",
+    "description": "撤销或恢复缺省：配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称 Trap 告警 间隔",
     "view": "system-view",
     "risk": "medium"
   },
@@ -31300,12 +31305,12 @@
     "risk": "medium"
   },
   "ipv6 address auto": {
-    "description": "配置 IPv6 地址 AUTO",
+    "description": "配置 IPv6 地址 自动",
     "view": "system-view",
     "risk": "low"
   },
   "undo ipv6 address auto": {
-    "description": "撤销或恢复缺省：配置 IPv6 地址 AUTO",
+    "description": "撤销或恢复缺省：配置 IPv6 地址 自动",
     "view": "system-view",
     "risk": "medium"
   },
@@ -31780,12 +31785,12 @@
     "risk": "medium"
   },
   "port-auto-sleep": {
-    "description": "配置端口",
+    "description": "配置端口 自动",
     "view": "system-view",
     "risk": "low"
   },
   "undo port-auto-sleep": {
-    "description": "撤销或恢复缺省：配置端口",
+    "description": "撤销或恢复缺省：配置端口 自动",
     "view": "system-view",
     "risk": "medium"
   },
@@ -32220,7 +32225,7 @@
     "risk": "low"
   },
   "auto": {
-    "description": "配置 AUTO",
+    "description": "配置自动",
     "view": "system-view",
     "risk": "low"
   },
@@ -32235,7 +32240,7 @@
     "risk": "low"
   },
   "auto-cost": {
-    "description": "配置开销",
+    "description": "配置自动 开销",
     "view": "system-view",
     "risk": "low"
   },
@@ -33545,7 +33550,7 @@
     "risk": "low"
   },
   "display test-packet": {
-    "description": "查看报文",
+    "description": "查看测试 报文",
     "view": "user-view",
     "risk": "low"
   },
@@ -33700,7 +33705,7 @@
     "risk": "low"
   },
   "error-down auto-recovery": {
-    "description": "配置错误关闭 恢复",
+    "description": "配置错误关闭 自动 恢复",
     "view": "system-view",
     "risk": "low"
   },
@@ -33710,12 +33715,12 @@
     "risk": "low"
   },
   "error-shutdown auto-recovery": {
-    "description": "配置错误 关闭 恢复",
+    "description": "配置错误 关闭 自动 恢复",
     "view": "system-view",
     "risk": "low"
   },
   "error-shutdown auto-recovery cause": {
-    "description": "配置错误 关闭 恢复 原因",
+    "description": "配置错误 关闭 自动 恢复 原因",
     "view": "system-view",
     "risk": "low"
   },
@@ -33860,7 +33865,7 @@
     "risk": "low"
   },
   "import-route isis level-1 into": {
-    "description": "配置导入 路由 ISIS 一级 INTO",
+    "description": "配置导入 路由 ISIS 一级 到",
     "view": "system-view",
     "risk": "low"
   },
@@ -33870,7 +33875,7 @@
     "risk": "low"
   },
   "import-route isis level-2 into": {
-    "description": "配置导入 路由 ISIS 二级 INTO",
+    "description": "配置导入 路由 ISIS 二级 到",
     "view": "system-view",
     "risk": "low"
   },
@@ -33920,7 +33925,7 @@
     "risk": "low"
   },
   "ipv6 auto-cost": {
-    "description": "配置 IPv6 开销",
+    "description": "配置 IPv6 自动 开销",
     "view": "system-view",
     "risk": "low"
   },
@@ -33940,7 +33945,7 @@
     "risk": "low"
   },
   "ipv6 import-route isis level-1 into": {
-    "description": "配置 IPv6 导入 路由 ISIS 一级 INTO",
+    "description": "配置 IPv6 导入 路由 ISIS 一级 到",
     "view": "system-view",
     "risk": "low"
   },
@@ -33950,7 +33955,7 @@
     "risk": "low"
   },
   "ipv6 import-route isis level-2 into": {
-    "description": "配置 IPv6 导入 路由 ISIS 二级 INTO",
+    "description": "配置 IPv6 导入 路由 ISIS 二级 到",
     "view": "system-view",
     "risk": "low"
   },
@@ -34145,7 +34150,7 @@
     "risk": "low"
   },
   "mac-address hash-mode lsb": {
-    "description": "配置 MAC 地址 方式 LSB",
+    "description": "配置 MAC 地址 方式 低位",
     "view": "system-view",
     "risk": "low"
   },
@@ -34350,22 +34355,22 @@
     "risk": "low"
   },
   "multicast mping-test": {
-    "description": "配置组播",
+    "description": "配置组播 测试",
     "view": "system-view",
     "risk": "low"
   },
   "multicast mping-test invoke-get-ifinfo": {
-    "description": "配置组播 获取",
+    "description": "配置组播 测试 获取",
     "view": "system-view",
     "risk": "low"
   },
   "multicast mtrace-test": {
-    "description": "配置组播",
+    "description": "配置组播 测试",
     "view": "system-view",
     "risk": "low"
   },
   "multicast mtrace-test invoke-check-lasthop": {
-    "description": "配置组播 检查",
+    "description": "配置组播 测试 检查",
     "view": "system-view",
     "risk": "low"
   },
@@ -34435,7 +34440,7 @@
     "risk": "low"
   },
   "ospf router-id auto-recover": {
-    "description": "配置 OSPF 路由器 ID",
+    "description": "配置 OSPF 路由器 ID 自动",
     "view": "ospf-view",
     "risk": "low"
   },
@@ -34550,7 +34555,7 @@
     "risk": "low"
   },
   "prefix-priority high": {
-    "description": "配置前缀优先级 HIGH",
+    "description": "配置前缀优先级 高",
     "view": "system-view",
     "risk": "low"
   },
@@ -35235,102 +35240,102 @@
     "risk": "low"
   },
   "test": {
-    "description": "配置 TEST",
+    "description": "配置测试",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev cdev_cpbsp": {
-    "description": "配置 TEST CDEV",
+    "description": "配置测试 CDEV",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev cdev_pub": {
-    "description": "配置 TEST CDEV",
+    "description": "配置测试 CDEV",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev plug-in": {
-    "description": "配置 TEST CDEV",
+    "description": "配置测试 CDEV",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev pull-out": {
-    "description": "配置 TEST CDEV",
+    "description": "配置测试 CDEV",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev backup": {
-    "description": "配置 TEST CDEV 备份",
+    "description": "配置测试 CDEV 备份",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev backup batch": {
-    "description": "配置 TEST CDEV 备份 批量",
+    "description": "配置测试 CDEV 备份 批量",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-attr add": {
-    "description": "配置 TEST CDEV 实体属性 ADD",
+    "description": "配置测试 CDEV 实体属性 ADD",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-attr update": {
-    "description": "配置 TEST CDEV 实体属性 更新",
+    "description": "配置测试 CDEV 实体属性 更新",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-attr query": {
-    "description": "配置 TEST CDEV 实体属性 查询",
+    "description": "配置测试 CDEV 实体属性 查询",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-attr delete": {
-    "description": "配置 TEST CDEV 实体属性",
+    "description": "配置测试 CDEV 实体属性",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-tree add": {
-    "description": "配置 TEST CDEV 实体树 ADD",
+    "description": "配置测试 CDEV 实体树 ADD",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-tree query": {
-    "description": "配置 TEST CDEV 实体树 查询",
+    "description": "配置测试 CDEV 实体树 查询",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-tree delete": {
-    "description": "配置 TEST CDEV 实体树",
+    "description": "配置测试 CDEV 实体树",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-tree delete-entity-tree": {
-    "description": "配置 TEST CDEV 实体树",
+    "description": "配置测试 CDEV 实体树",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-tree delete-entity-child": {
-    "description": "配置 TEST CDEV 实体树",
+    "description": "配置测试 CDEV 实体树",
     "view": "system-view",
     "risk": "low"
   },
   "test cdev entity-tree copy": {
-    "description": "配置 TEST CDEV 实体树 COPY",
+    "description": "配置测试 CDEV 实体树 COPY",
     "view": "system-view",
     "risk": "low"
   },
   "test-packet": {
-    "description": "配置报文",
+    "description": "配置测试 报文",
     "view": "system-view",
     "risk": "low"
   },
   "test-packet start": {
-    "description": "配置报文 启动",
+    "description": "配置测试 报文 启动",
     "view": "system-view",
     "risk": "low"
   },
   "test-type": {
-    "description": "配置类型",
+    "description": "配置测试 类型",
     "view": "system-view",
     "risk": "low"
   },
@@ -35510,12 +35515,12 @@
     "risk": "medium"
   },
   "undo auto": {
-    "description": "撤销或恢复缺省：配置 AUTO",
+    "description": "撤销或恢复缺省：配置自动",
     "view": "system-view",
     "risk": "medium"
   },
   "undo auto-cost": {
-    "description": "撤销或恢复缺省：配置开销",
+    "description": "撤销或恢复缺省：配置自动 开销",
     "view": "system-view",
     "risk": "medium"
   },
@@ -35620,7 +35625,7 @@
     "risk": "medium"
   },
   "undo error-down auto-recovery": {
-    "description": "撤销或恢复缺省：配置错误关闭 恢复",
+    "description": "撤销或恢复缺省：配置错误关闭 自动 恢复",
     "view": "system-view",
     "risk": "medium"
   },
@@ -35755,7 +35760,7 @@
     "risk": "medium"
   },
   "undo import-route isis level-1 into": {
-    "description": "撤销或恢复缺省：配置导入 路由 ISIS 一级 INTO",
+    "description": "撤销或恢复缺省：配置导入 路由 ISIS 一级 到",
     "view": "system-view",
     "risk": "medium"
   },
@@ -35765,7 +35770,7 @@
     "risk": "medium"
   },
   "undo import-route isis level-2 into": {
-    "description": "撤销或恢复缺省：配置导入 路由 ISIS 二级 INTO",
+    "description": "撤销或恢复缺省：配置导入 路由 ISIS 二级 到",
     "view": "system-view",
     "risk": "medium"
   },
@@ -35805,7 +35810,7 @@
     "risk": "medium"
   },
   "undo ipv6 auto-cost": {
-    "description": "撤销或恢复缺省：配置 IPv6 开销",
+    "description": "撤销或恢复缺省：配置 IPv6 自动 开销",
     "view": "system-view",
     "risk": "medium"
   },
@@ -35825,7 +35830,7 @@
     "risk": "medium"
   },
   "undo ipv6 import-route isis level-1 into": {
-    "description": "撤销或恢复缺省：配置 IPv6 导入 路由 ISIS 一级 INTO",
+    "description": "撤销或恢复缺省：配置 IPv6 导入 路由 ISIS 一级 到",
     "view": "system-view",
     "risk": "medium"
   },
@@ -35835,7 +35840,7 @@
     "risk": "medium"
   },
   "undo ipv6 import-route isis level-2 into": {
-    "description": "撤销或恢复缺省：配置 IPv6 导入 路由 ISIS 二级 INTO",
+    "description": "撤销或恢复缺省：配置 IPv6 导入 路由 ISIS 二级 到",
     "view": "system-view",
     "risk": "medium"
   },
@@ -37200,12 +37205,12 @@
     "risk": "low"
   },
   "snmp-agent trap suppress feature-name lsp trap-name mplsxcup": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称",
     "view": "system-view",
     "risk": "low"
   },
   "snmp-agent trap suppress feature-name lsp trap-name mplsxcdown": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称",
     "view": "system-view",
     "risk": "low"
   },
@@ -37280,7 +37285,7 @@
     "risk": "medium"
   },
   "undo ospf router-id auto-recover": {
-    "description": "撤销或恢复缺省：配置 OSPF 路由器 ID",
+    "description": "撤销或恢复缺省：配置 OSPF 路由器 ID 自动",
     "view": "ospf-view",
     "risk": "medium"
   },
@@ -37305,12 +37310,12 @@
     "risk": "medium"
   },
   "undo snmp-agent trap suppress feature-name lsp trap-name mplsxcup": {
-    "description": "撤销或恢复缺省：配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP",
+    "description": "撤销或恢复缺省：配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称",
     "view": "system-view",
     "risk": "medium"
   },
   "undo snmp-agent trap suppress feature-name lsp trap-name mplsxcdown": {
-    "description": "撤销或恢复缺省：配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP",
+    "description": "撤销或恢复缺省：配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称",
     "view": "system-view",
     "risk": "medium"
   },
@@ -40780,7 +40785,7 @@
     "risk": "low"
   },
   "acl-name": {
-    "description": "含义：ACL",
+    "description": "含义：ACL 名称",
     "view": "system-view",
     "risk": "low"
   },
@@ -40840,12 +40845,12 @@
     "risk": "low"
   },
   "address auto link-local": {
-    "description": "配置 IPv6 地址 AUTO 链路 本地",
+    "description": "配置 IPv6 地址 自动 链路 本地",
     "view": "system-view",
     "risk": "low"
   },
   "auto link-local": {
-    "description": "配置 IPv6 地址 AUTO 链路 本地",
+    "description": "配置 IPv6 地址 自动 链路 本地",
     "view": "system-view",
     "risk": "low"
   },
@@ -40940,7 +40945,7 @@
     "risk": "low"
   },
   "psnp-high-priority": {
-    "description": "含义：优先级",
+    "description": "含义：高 优先级",
     "view": "system-view",
     "risk": "low"
   },
@@ -41715,12 +41720,12 @@
     "risk": "low"
   },
   "multicast-hash-mode lsb": {
-    "description": "配置 SET 组播 方式 LSB",
+    "description": "配置 SET 组播 方式 低位",
     "view": "system-view",
     "risk": "low"
   },
   "lsb": {
-    "description": "配置 SET 组播 方式 LSB",
+    "description": "含义：低位",
     "view": "system-view",
     "risk": "low"
   },
@@ -41995,12 +42000,12 @@
     "risk": "low"
   },
   "trap enable test-packet": {
-    "description": "配置 SNMP 管理 Trap 告警 使能 报文",
+    "description": "配置 SNMP 管理 Trap 告警 使能 测试 报文",
     "view": "system-view",
     "risk": "low"
   },
   "enable test-packet": {
-    "description": "配置 SNMP 管理 Trap 告警 使能 报文",
+    "description": "配置 SNMP 管理 Trap 告警 使能 测试 报文",
     "view": "system-view",
     "risk": "low"
   },
@@ -42020,7 +42025,7 @@
     "risk": "low"
   },
   "auto-negotiation": {
-    "description": "含义：协商",
+    "description": "含义：自动 协商",
     "view": "interface-view",
     "risk": "low"
   },
@@ -42455,12 +42460,12 @@
     "risk": "low"
   },
   "ipv6 name": {
-    "description": "配置 ACL IPv6 NAME",
+    "description": "配置 ACL IPv6 名称",
     "view": "acl-view",
     "risk": "low"
   },
   "name": {
-    "description": "配置 ACL IPv6 NAME",
+    "description": "含义：名称",
     "view": "acl-view",
     "risk": "low"
   },
@@ -42540,7 +42545,7 @@
     "risk": "low"
   },
   "backup-nexthop auto": {
-    "description": "配置应用 备份 下一跳 AUTO",
+    "description": "配置应用 备份 下一跳 自动",
     "view": "system-view",
     "risk": "low"
   },
@@ -43065,17 +43070,17 @@
     "risk": "low"
   },
   "portid-tlv type interface-name": {
-    "description": "配置 CFM 类型 接口",
+    "description": "配置 CFM 类型 接口 名称",
     "view": "system-view",
     "risk": "low"
   },
   "type interface-name": {
-    "description": "配置 CFM 类型 接口",
+    "description": "配置 CFM 类型 接口 名称",
     "view": "system-view",
     "risk": "low"
   },
   "interface-name": {
-    "description": "含义：接口",
+    "description": "含义：接口 名称",
     "view": "system-view",
     "risk": "low"
   },
@@ -44595,17 +44600,17 @@
     "risk": "low"
   },
   "acl ipv6 dbg name": {
-    "description": "查看 ACL IPv6 DBG NAME",
+    "description": "查看 ACL IPv6 DBG 名称",
     "view": "user-view",
     "risk": "low"
   },
   "ipv6 dbg name": {
-    "description": "查看 ACL IPv6 DBG NAME",
+    "description": "查看 ACL IPv6 DBG 名称",
     "view": "user-view",
     "risk": "low"
   },
   "dbg name": {
-    "description": "查看 ACL IPv6 DBG NAME",
+    "description": "查看 ACL IPv6 DBG 名称",
     "view": "user-view",
     "risk": "low"
   },
@@ -45230,17 +45235,17 @@
     "risk": "low"
   },
   "bfd configuration static-auto": {
-    "description": "查看 BFD 配置 静态",
+    "description": "查看 BFD 配置 静态 自动",
     "view": "user-view",
     "risk": "low"
   },
   "configuration static-auto": {
-    "description": "查看 BFD 配置 静态",
+    "description": "查看 BFD 配置 静态 自动",
     "view": "user-view",
     "risk": "low"
   },
   "static-auto": {
-    "description": "含义：静态",
+    "description": "含义：静态 自动",
     "view": "user-view",
     "risk": "low"
   },
@@ -48050,12 +48055,12 @@
     "risk": "low"
   },
   "isis name-table": {
-    "description": "查看 ISIS 表",
+    "description": "查看 ISIS 名称 表",
     "view": "user-view",
     "risk": "low"
   },
   "name-table": {
-    "description": "含义：表",
+    "description": "含义：名称 表",
     "view": "user-view",
     "risk": "low"
   },
@@ -51540,7 +51545,7 @@
     "risk": "low"
   },
   "test-packet result": {
-    "description": "查看报文 结果",
+    "description": "查看测试 报文 结果",
     "view": "user-view",
     "risk": "low"
   },
@@ -51940,7 +51945,7 @@
     "risk": "low"
   },
   "unidirectional-shutdown auto": {
-    "description": "配置 DLDP 关闭 AUTO",
+    "description": "配置 DLDP 关闭 自动",
     "view": "system-view",
     "risk": "low"
   },
@@ -52190,7 +52195,7 @@
     "risk": "low"
   },
   "auto-recovery cause": {
-    "description": "配置错误关闭 恢复 原因",
+    "description": "配置错误关闭 自动 恢复 原因",
     "view": "system-view",
     "risk": "low"
   },
@@ -52200,12 +52205,12 @@
     "risk": "low"
   },
   "auto-recovery cause efm-threshold-event": {
-    "description": "配置错误 关闭 恢复 原因 阈值 事件",
+    "description": "配置错误 关闭 自动 恢复 原因 阈值 事件",
     "view": "system-view",
     "risk": "low"
   },
   "cause efm-threshold-event": {
-    "description": "配置错误 关闭 恢复 原因 阈值 事件",
+    "description": "配置错误 关闭 自动 恢复 原因 阈值 事件",
     "view": "system-view",
     "risk": "low"
   },
@@ -52215,7 +52220,7 @@
     "risk": "low"
   },
   "auto-recovery interval": {
-    "description": "配置错误 关闭 恢复 间隔",
+    "description": "配置错误 关闭 自动 恢复 间隔",
     "view": "system-view",
     "risk": "low"
   },
@@ -52225,22 +52230,22 @@
     "risk": "low"
   },
   "track bfd-session session-name": {
-    "description": "配置干道 联动跟踪 BFD 会话 会话",
+    "description": "配置干道 联动跟踪 BFD 会话 会话 名称",
     "view": "system-view",
     "risk": "low"
   },
   "bfd-session session-name": {
-    "description": "配置干道 联动跟踪 BFD 会话 会话",
+    "description": "配置干道 联动跟踪 BFD 会话 会话 名称",
     "view": "system-view",
     "risk": "low"
   },
   "session-name": {
-    "description": "含义：会话",
+    "description": "含义：会话 名称",
     "view": "system-view",
     "risk": "low"
   },
   "speed auto": {
-    "description": "配置 FAN 速率 AUTO",
+    "description": "配置 FAN 速率 自动",
     "view": "system-view",
     "risk": "low"
   },
@@ -52660,52 +52665,52 @@
     "risk": "low"
   },
   "isis level-1 into level-2": {
-    "description": "配置导入 路由 ISIS 一级 INTO 二级",
+    "description": "配置导入 路由 ISIS 一级 到 二级",
     "view": "system-view",
     "risk": "low"
   },
   "level-1 into level-2": {
-    "description": "配置导入 路由 ISIS 一级 INTO 二级",
+    "description": "配置导入 路由 ISIS 一级 到 二级",
     "view": "system-view",
     "risk": "low"
   },
   "into level-2": {
-    "description": "配置导入 路由 ISIS 一级 INTO 二级",
+    "description": "配置导入 路由 ISIS 一级 到 二级",
     "view": "system-view",
     "risk": "low"
   },
   "isis level-2 into level-1": {
-    "description": "配置导入 路由 ISIS 二级 INTO 一级",
+    "description": "配置导入 路由 ISIS 二级 到 一级",
     "view": "system-view",
     "risk": "low"
   },
   "level-2 into level-1": {
-    "description": "配置导入 路由 ISIS 二级 INTO 一级",
+    "description": "配置导入 路由 ISIS 二级 到 一级",
     "view": "system-view",
     "risk": "low"
   },
   "into level-1": {
-    "description": "配置导入 路由 ISIS 二级 INTO 一级",
+    "description": "配置导入 路由 ISIS 二级 到 一级",
     "view": "system-view",
     "risk": "low"
   },
   "isis level-2 into level-1 acl": {
-    "description": "配置导入 路由 ISIS 二级 INTO 一级 ACL",
+    "description": "配置导入 路由 ISIS 二级 到 一级 ACL",
     "view": "system-view",
     "risk": "low"
   },
   "level-2 into level-1 acl": {
-    "description": "配置导入 路由 ISIS 二级 INTO 一级 ACL",
+    "description": "配置导入 路由 ISIS 二级 到 一级 ACL",
     "view": "system-view",
     "risk": "low"
   },
   "into level-1 acl": {
-    "description": "配置导入 路由 ISIS 二级 INTO 一级 ACL",
+    "description": "配置导入 路由 ISIS 二级 到 一级 ACL",
     "view": "system-view",
     "risk": "low"
   },
   "level-1 acl": {
-    "description": "配置导入 路由 ISIS 二级 INTO 一级 ACL",
+    "description": "配置导入 路由 ISIS 二级 到 一级 ACL",
     "view": "system-view",
     "risk": "low"
   },
@@ -53410,12 +53415,12 @@
     "risk": "low"
   },
   "hash-mode lsb slot": {
-    "description": "配置 MAC 地址 方式 LSB 槽位",
+    "description": "配置 MAC 地址 方式 低位 槽位",
     "view": "system-view",
     "risk": "low"
   },
   "lsb slot": {
-    "description": "配置 MAC 地址 方式 LSB 槽位",
+    "description": "配置 MAC 地址 方式 低位 槽位",
     "view": "system-view",
     "risk": "low"
   },
@@ -53580,12 +53585,12 @@
     "risk": "low"
   },
   "l2vpn service-name": {
-    "description": "配置 MPLS 二层 VPN 服务",
+    "description": "配置 MPLS 二层 VPN 服务 名称",
     "view": "system-view",
     "risk": "low"
   },
   "service-name": {
-    "description": "含义：服务",
+    "description": "含义：服务 名称",
     "view": "system-view",
     "risk": "low"
   },
@@ -54035,27 +54040,27 @@
     "risk": "low"
   },
   "mping-test invoke-get-ifinfo group": {
-    "description": "配置组播 获取 组",
+    "description": "配置组播 测试 获取 组",
     "view": "system-view",
     "risk": "low"
   },
   "invoke-get-ifinfo group": {
-    "description": "配置组播 获取 组",
+    "description": "配置组播 测试 获取 组",
     "view": "system-view",
     "risk": "low"
   },
   "mtrace-test invoke-check-lasthop source": {
-    "description": "配置组播 检查 源",
+    "description": "配置组播 测试 检查 源",
     "view": "system-view",
     "risk": "low"
   },
   "invoke-check-lasthop source": {
-    "description": "配置组播 检查 源",
+    "description": "配置组播 测试 检查 源",
     "view": "system-view",
     "risk": "low"
   },
   "mtrace-test invoke-check-rpf": {
-    "description": "配置组播 检查 反向路径转发",
+    "description": "配置组播 测试 检查 反向路径转发",
     "view": "system-view",
     "risk": "low"
   },
@@ -54065,12 +54070,12 @@
     "risk": "low"
   },
   "mtrace-test invoke-check-rpf source": {
-    "description": "配置组播 检查 反向路径转发 源",
+    "description": "配置组播 测试 检查 反向路径转发 源",
     "view": "system-view",
     "risk": "low"
   },
   "invoke-check-rpf source": {
-    "description": "配置组播 检查 反向路径转发 源",
+    "description": "配置组播 测试 检查 反向路径转发 源",
     "view": "system-view",
     "risk": "low"
   },
@@ -54265,7 +54270,7 @@
     "risk": "low"
   },
   "test-instance": {
-    "description": "含义：实例",
+    "description": "含义：测试 实例",
     "view": "system-view",
     "risk": "low"
   },
@@ -54400,12 +54405,12 @@
     "risk": "low"
   },
   "router-id auto-recover disable": {
-    "description": "配置 OSPF 路由器 ID 禁用",
+    "description": "配置 OSPF 路由器 ID 自动 禁用",
     "view": "ospf-view",
     "risk": "low"
   },
   "auto-recover disable": {
-    "description": "配置 OSPF 路由器 ID 禁用",
+    "description": "配置 OSPF 路由器 ID 自动 禁用",
     "view": "ospf-view",
     "risk": "low"
   },
@@ -54800,7 +54805,7 @@
     "risk": "low"
   },
   "high ip-prefix": {
-    "description": "配置前缀优先级 HIGH IP 前缀列表",
+    "description": "配置前缀优先级 高 IP 前缀列表",
     "view": "system-view",
     "risk": "low"
   },
@@ -54810,7 +54815,7 @@
     "risk": "low"
   },
   "lock": {
-    "description": "配置 LOCK",
+    "description": "含义：锁定",
     "view": "system-view",
     "risk": "low"
   },
@@ -54980,17 +54985,17 @@
     "risk": "high"
   },
   "acl ipv6 counter name": {
-    "description": "清除或重置 ACL IPv6 计数器 NAME",
+    "description": "清除或重置 ACL IPv6 计数器 名称",
     "view": "user-view",
     "risk": "high"
   },
   "ipv6 counter name": {
-    "description": "清除或重置 ACL IPv6 计数器 NAME",
+    "description": "清除或重置 ACL IPv6 计数器 名称",
     "view": "user-view",
     "risk": "high"
   },
   "counter name": {
-    "description": "清除或重置 ACL IPv6 计数器 NAME",
+    "description": "清除或重置 ACL IPv6 计数器 名称",
     "view": "user-view",
     "risk": "high"
   },
@@ -55740,7 +55745,7 @@
     "risk": "low"
   },
   "metricout acl-name": {
-    "description": "配置 RIP 出方向度量值 ACL",
+    "description": "配置 RIP 出方向度量值 ACL 名称",
     "view": "system-view",
     "risk": "low"
   },
@@ -56395,7 +56400,7 @@
     "risk": "low"
   },
   "compliance auto": {
-    "description": "配置 STP 兼容性 AUTO",
+    "description": "配置 STP 兼容性 自动",
     "view": "system-view",
     "risk": "low"
   },
@@ -56510,7 +56515,7 @@
     "risk": "low"
   },
   "point-to-point auto": {
-    "description": "配置 STP 到 AUTO",
+    "description": "配置 STP 到 自动",
     "view": "system-view",
     "risk": "low"
   },
@@ -56630,57 +56635,57 @@
     "risk": "low"
   },
   "cdev cdev_cpbsp slot": {
-    "description": "配置 TEST CDEV 槽位",
+    "description": "配置测试 CDEV 槽位",
     "view": "system-view",
     "risk": "low"
   },
   "cdev_cpbsp slot": {
-    "description": "配置 TEST CDEV 槽位",
+    "description": "配置测试 CDEV 槽位",
     "view": "system-view",
     "risk": "low"
   },
   "cdev cdev_pub slot": {
-    "description": "配置 TEST CDEV 槽位",
+    "description": "配置测试 CDEV 槽位",
     "view": "system-view",
     "risk": "low"
   },
   "cdev_pub slot": {
-    "description": "配置 TEST CDEV 槽位",
+    "description": "配置测试 CDEV 槽位",
     "view": "system-view",
     "risk": "low"
   },
   "cdev plug-in slot": {
-    "description": "配置 TEST CDEV 槽位",
+    "description": "配置测试 CDEV 槽位",
     "view": "system-view",
     "risk": "low"
   },
   "plug-in slot": {
-    "description": "配置 TEST CDEV 槽位",
+    "description": "配置测试 CDEV 槽位",
     "view": "system-view",
     "risk": "low"
   },
   "cdev pull-out slot": {
-    "description": "配置 TEST CDEV 槽位",
+    "description": "配置测试 CDEV 槽位",
     "view": "system-view",
     "risk": "low"
   },
   "pull-out slot": {
-    "description": "配置 TEST CDEV 槽位",
+    "description": "配置测试 CDEV 槽位",
     "view": "system-view",
     "risk": "low"
   },
   "cdev backup batch dev-backtype": {
-    "description": "配置 TEST CDEV 备份 批量 设备背板类型",
+    "description": "配置测试 CDEV 备份 批量 设备背板类型",
     "view": "system-view",
     "risk": "low"
   },
   "backup batch dev-backtype": {
-    "description": "配置 TEST CDEV 备份 批量 设备背板类型",
+    "description": "配置测试 CDEV 备份 批量 设备背板类型",
     "view": "system-view",
     "risk": "low"
   },
   "batch dev-backtype": {
-    "description": "配置 TEST CDEV 备份 批量 设备背板类型",
+    "description": "配置测试 CDEV 备份 批量 设备背板类型",
     "view": "system-view",
     "risk": "low"
   },
@@ -56690,72 +56695,72 @@
     "risk": "low"
   },
   "cdev entity-attr add entity-id": {
-    "description": "配置 TEST CDEV 实体属性 ADD 实体 ID",
+    "description": "配置测试 CDEV 实体属性 ADD 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "entity-attr add entity-id": {
-    "description": "配置 TEST CDEV 实体属性 ADD 实体 ID",
+    "description": "配置测试 CDEV 实体属性 ADD 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "add entity-id": {
-    "description": "配置 TEST CDEV 实体属性 ADD 实体 ID",
+    "description": "配置测试 CDEV 实体属性 ADD 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "cdev entity-attr update entity-id": {
-    "description": "配置 TEST CDEV 实体属性 更新 实体 ID",
+    "description": "配置测试 CDEV 实体属性 更新 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "entity-attr update entity-id": {
-    "description": "配置 TEST CDEV 实体属性 更新 实体 ID",
+    "description": "配置测试 CDEV 实体属性 更新 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "update entity-id": {
-    "description": "配置 TEST CDEV 实体属性 更新 实体 ID",
+    "description": "配置测试 CDEV 实体属性 更新 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "cdev entity-attr query entity-id": {
-    "description": "配置 TEST CDEV 实体属性 查询 实体 ID",
+    "description": "配置测试 CDEV 实体属性 查询 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "entity-attr query entity-id": {
-    "description": "配置 TEST CDEV 实体属性 查询 实体 ID",
+    "description": "配置测试 CDEV 实体属性 查询 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "query entity-id": {
-    "description": "配置 TEST CDEV 实体属性 查询 实体 ID",
+    "description": "配置测试 CDEV 实体属性 查询 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "cdev entity-attr delete entity-id": {
-    "description": "配置 TEST CDEV 实体属性 实体 ID",
+    "description": "配置测试 CDEV 实体属性 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "entity-attr delete entity-id": {
-    "description": "配置 TEST CDEV 实体属性 实体 ID",
+    "description": "配置测试 CDEV 实体属性 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "delete entity-id": {
-    "description": "配置 TEST CDEV 实体属性 实体 ID",
+    "description": "配置测试 CDEV 实体属性 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "cdev entity-attr copy-attr-req": {
-    "description": "配置 TEST CDEV 实体属性 复制属性请求",
+    "description": "配置测试 CDEV 实体属性 复制属性请求",
     "view": "system-view",
     "risk": "low"
   },
   "entity-attr copy-attr-req": {
-    "description": "配置 TEST CDEV 实体属性 复制属性请求",
+    "description": "配置测试 CDEV 实体属性 复制属性请求",
     "view": "system-view",
     "risk": "low"
   },
@@ -56765,27 +56770,27 @@
     "risk": "low"
   },
   "cdev entity-attr reg-attr-req entity-id": {
-    "description": "配置 TEST CDEV 实体属性 注册属性请求 实体 ID",
+    "description": "配置测试 CDEV 实体属性 注册属性请求 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "entity-attr reg-attr-req entity-id": {
-    "description": "配置 TEST CDEV 实体属性 注册属性请求 实体 ID",
+    "description": "配置测试 CDEV 实体属性 注册属性请求 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "reg-attr-req entity-id": {
-    "description": "配置 TEST CDEV 实体属性 注册属性请求 实体 ID",
+    "description": "配置测试 CDEV 实体属性 注册属性请求 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "cdev entity-attr reg-attr-req": {
-    "description": "配置 TEST CDEV 实体属性 注册属性请求",
+    "description": "配置测试 CDEV 实体属性 注册属性请求",
     "view": "system-view",
     "risk": "low"
   },
   "entity-attr reg-attr-req": {
-    "description": "配置 TEST CDEV 实体属性 注册属性请求",
+    "description": "配置测试 CDEV 实体属性 注册属性请求",
     "view": "system-view",
     "risk": "low"
   },
@@ -56795,92 +56800,92 @@
     "risk": "low"
   },
   "cdev entity-tree add entity-id": {
-    "description": "配置 TEST CDEV 实体树 ADD 实体 ID",
+    "description": "配置测试 CDEV 实体树 ADD 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "entity-tree add entity-id": {
-    "description": "配置 TEST CDEV 实体树 ADD 实体 ID",
+    "description": "配置测试 CDEV 实体树 ADD 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "cdev entity-tree query entity-id": {
-    "description": "配置 TEST CDEV 实体树 查询 实体 ID",
+    "description": "配置测试 CDEV 实体树 查询 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "entity-tree query entity-id": {
-    "description": "配置 TEST CDEV 实体树 查询 实体 ID",
+    "description": "配置测试 CDEV 实体树 查询 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "cdev entity-tree delete entity-id": {
-    "description": "配置 TEST CDEV 实体树 实体 ID",
+    "description": "配置测试 CDEV 实体树 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "entity-tree delete entity-id": {
-    "description": "配置 TEST CDEV 实体树 实体 ID",
+    "description": "配置测试 CDEV 实体树 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "cdev entity-tree delete-entity-tree entity-id": {
-    "description": "配置 TEST CDEV 实体树 实体 ID",
+    "description": "配置测试 CDEV 实体树 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "entity-tree delete-entity-tree entity-id": {
-    "description": "配置 TEST CDEV 实体树 实体 ID",
+    "description": "配置测试 CDEV 实体树 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "delete-entity-tree entity-id": {
-    "description": "配置 TEST CDEV 实体树 实体 ID",
+    "description": "配置测试 CDEV 实体树 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "cdev entity-tree delete-entity-child entity-id": {
-    "description": "配置 TEST CDEV 实体树 实体 ID",
+    "description": "配置测试 CDEV 实体树 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "entity-tree delete-entity-child entity-id": {
-    "description": "配置 TEST CDEV 实体树 实体 ID",
+    "description": "配置测试 CDEV 实体树 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "delete-entity-child entity-id": {
-    "description": "配置 TEST CDEV 实体树 实体 ID",
+    "description": "配置测试 CDEV 实体树 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "cdev entity-tree copy entity-id": {
-    "description": "配置 TEST CDEV 实体树 COPY 实体 ID",
+    "description": "配置测试 CDEV 实体树 COPY 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "entity-tree copy entity-id": {
-    "description": "配置 TEST CDEV 实体树 COPY 实体 ID",
+    "description": "配置测试 CDEV 实体树 COPY 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "copy entity-id": {
-    "description": "配置 TEST CDEV 实体树 COPY 实体 ID",
+    "description": "配置测试 CDEV 实体树 COPY 实体 ID",
     "view": "system-view",
     "risk": "low"
   },
   "ttl pipe": {
-    "description": "配置 TEST TTL PIPE",
+    "description": "配置测试 TTL PIPE",
     "view": "system-view",
     "risk": "low"
   },
   "ttl uniform": {
-    "description": "配置 TEST TTL 统一模式",
+    "description": "配置测试 TTL 统一模式",
     "view": "system-view",
     "risk": "low"
   },
   "start interface": {
-    "description": "配置报文 启动 接口",
+    "description": "配置测试 报文 启动 接口",
     "view": "system-view",
     "risk": "low"
   },
@@ -57450,52 +57455,52 @@
     "risk": "medium"
   },
   "import-route isis level-1 into level-2 filter-policy": {
-    "description": "配置导入 路由 ISIS 一级 INTO 二级 过滤器 策略",
+    "description": "配置导入 路由 ISIS 一级 到 二级 过滤器 策略",
     "view": "system-view",
     "risk": "medium"
   },
   "isis level-1 into level-2 filter-policy": {
-    "description": "配置导入 路由 ISIS 一级 INTO 二级 过滤器 策略",
+    "description": "配置导入 路由 ISIS 一级 到 二级 过滤器 策略",
     "view": "system-view",
     "risk": "medium"
   },
   "level-1 into level-2 filter-policy": {
-    "description": "配置导入 路由 ISIS 一级 INTO 二级 过滤器 策略",
+    "description": "配置导入 路由 ISIS 一级 到 二级 过滤器 策略",
     "view": "system-view",
     "risk": "medium"
   },
   "into level-2 filter-policy": {
-    "description": "配置导入 路由 ISIS 一级 INTO 二级 过滤器 策略",
+    "description": "配置导入 路由 ISIS 一级 到 二级 过滤器 策略",
     "view": "system-view",
     "risk": "medium"
   },
   "level-2 filter-policy": {
-    "description": "配置导入 路由 ISIS 一级 INTO 二级 过滤器 策略",
+    "description": "配置导入 路由 ISIS 一级 到 二级 过滤器 策略",
     "view": "system-view",
     "risk": "medium"
   },
   "import-route isis level-2 into level-1 filter-policy": {
-    "description": "配置导入 路由 ISIS 二级 INTO 一级 过滤器 策略",
+    "description": "配置导入 路由 ISIS 二级 到 一级 过滤器 策略",
     "view": "system-view",
     "risk": "medium"
   },
   "isis level-2 into level-1 filter-policy": {
-    "description": "配置导入 路由 ISIS 二级 INTO 一级 过滤器 策略",
+    "description": "配置导入 路由 ISIS 二级 到 一级 过滤器 策略",
     "view": "system-view",
     "risk": "medium"
   },
   "level-2 into level-1 filter-policy": {
-    "description": "配置导入 路由 ISIS 二级 INTO 一级 过滤器 策略",
+    "description": "配置导入 路由 ISIS 二级 到 一级 过滤器 策略",
     "view": "system-view",
     "risk": "medium"
   },
   "into level-1 filter-policy": {
-    "description": "配置导入 路由 ISIS 二级 INTO 一级 过滤器 策略",
+    "description": "配置导入 路由 ISIS 二级 到 一级 过滤器 策略",
     "view": "system-view",
     "risk": "medium"
   },
   "level-1 filter-policy": {
-    "description": "配置导入 路由 ISIS 二级 INTO 一级 过滤器 策略",
+    "description": "配置导入 路由 ISIS 二级 到 一级 过滤器 策略",
     "view": "system-view",
     "risk": "medium"
   },
@@ -57580,12 +57585,12 @@
     "risk": "medium"
   },
   "ipv6 import-route isis level-1 into level-2 filter-policy": {
-    "description": "配置 IPv6 导入 路由 ISIS 一级 INTO 二级 过滤器 策略",
+    "description": "配置 IPv6 导入 路由 ISIS 一级 到 二级 过滤器 策略",
     "view": "system-view",
     "risk": "medium"
   },
   "ipv6 import-route isis level-2 into level-1 filter-policy": {
-    "description": "配置 IPv6 导入 路由 ISIS 二级 INTO 一级 过滤器 策略",
+    "description": "配置 IPv6 导入 路由 ISIS 二级 到 一级 过滤器 策略",
     "view": "system-view",
     "risk": "medium"
   },
@@ -58005,12 +58010,12 @@
     "risk": "medium"
   },
   "nqa all-test-instance": {
-    "description": "配置 NQA 全部 实例",
+    "description": "配置 NQA 全部 测试 实例",
     "view": "system-view",
     "risk": "medium"
   },
   "all-test-instance": {
-    "description": "含义：全部 实例",
+    "description": "含义：全部 测试 实例",
     "view": "system-view",
     "risk": "medium"
   },
@@ -58180,7 +58185,7 @@
     "risk": "medium"
   },
   "high": {
-    "description": "配置前缀优先级 HIGH",
+    "description": "含义：高",
     "view": "system-view",
     "risk": "medium"
   },
@@ -58290,7 +58295,7 @@
     "risk": "medium"
   },
   "mode auto": {
-    "description": "配置 VLAN 方式 AUTO",
+    "description": "配置 VLAN 方式 自动",
     "view": "system-view",
     "risk": "medium"
   },
@@ -60550,12 +60555,12 @@
     "risk": "low"
   },
   "bfd session static-auto": {
-    "description": "查看 BFD 会话 静态",
+    "description": "查看 BFD 会话 静态 自动",
     "view": "user-view",
     "risk": "low"
   },
   "session static-auto": {
-    "description": "查看 BFD 会话 静态",
+    "description": "查看 BFD 会话 静态 自动",
     "view": "user-view",
     "risk": "low"
   },
@@ -62830,87 +62835,87 @@
     "risk": "low"
   },
   "trap suppress feature-name lsp trap-name": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称",
     "view": "system-view",
     "risk": "low"
   },
   "suppress feature-name lsp trap-name": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称",
     "view": "system-view",
     "risk": "low"
   },
   "feature-name lsp trap-name": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称",
     "view": "system-view",
     "risk": "low"
   },
   "lsp trap-name": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称",
     "view": "system-view",
     "risk": "low"
   },
   "trap-name": {
-    "description": "含义：Trap 告警",
+    "description": "含义：Trap 告警 名称",
     "view": "system-view",
     "risk": "low"
   },
   "trap suppress feature-name lsp trap-name mplsxcup trap-interval": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 间隔",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称 Trap 告警 间隔",
     "view": "system-view",
     "risk": "low"
   },
   "suppress feature-name lsp trap-name mplsxcup trap-interval": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 间隔",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称 Trap 告警 间隔",
     "view": "system-view",
     "risk": "low"
   },
   "feature-name lsp trap-name mplsxcup trap-interval": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 间隔",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称 Trap 告警 间隔",
     "view": "system-view",
     "risk": "low"
   },
   "lsp trap-name mplsxcup trap-interval": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 间隔",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称 Trap 告警 间隔",
     "view": "system-view",
     "risk": "low"
   },
   "trap-name mplsxcup trap-interval": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 间隔",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称 Trap 告警 间隔",
     "view": "system-view",
     "risk": "low"
   },
   "mplsxcup trap-interval": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 间隔",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称 Trap 告警 间隔",
     "view": "system-view",
     "risk": "low"
   },
   "trap suppress feature-name lsp trap-name mplsxcdown trap-interval": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 间隔",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称 Trap 告警 间隔",
     "view": "system-view",
     "risk": "low"
   },
   "suppress feature-name lsp trap-name mplsxcdown trap-interval": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 间隔",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称 Trap 告警 间隔",
     "view": "system-view",
     "risk": "low"
   },
   "feature-name lsp trap-name mplsxcdown trap-interval": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 间隔",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称 Trap 告警 间隔",
     "view": "system-view",
     "risk": "low"
   },
   "lsp trap-name mplsxcdown trap-interval": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 间隔",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称 Trap 告警 间隔",
     "view": "system-view",
     "risk": "low"
   },
   "trap-name mplsxcdown trap-interval": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 间隔",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称 Trap 告警 间隔",
     "view": "system-view",
     "risk": "low"
   },
   "mplsxcdown trap-interval": {
-    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 间隔",
+    "description": "配置 SNMP 管理 Trap 告警 抑制 特性名称 LSP Trap 告警 名称 Trap 告警 间隔",
     "view": "system-view",
     "risk": "low"
   },
@@ -63465,7 +63470,7 @@
     "risk": "low"
   },
   "auto-recovery": {
-    "description": "含义：恢复",
+    "description": "含义：自动 恢复",
     "view": "system-view",
     "risk": "low"
   },
@@ -63476,6 +63481,11 @@
   },
   "static-router-port": {
     "description": "含义：静态 路由器 端口",
+    "view": "system-view",
+    "risk": "low"
+  },
+  "into": {
+    "description": "含义：到",
     "view": "system-view",
     "risk": "low"
   },
@@ -63494,8 +63504,18 @@
     "view": "system-view",
     "risk": "low"
   },
+  "mping-test": {
+    "description": "含义：测试",
+    "view": "system-view",
+    "risk": "low"
+  },
   "invoke-get-ifinfo": {
     "description": "含义：获取",
+    "view": "system-view",
+    "risk": "low"
+  },
+  "mtrace-test": {
+    "description": "含义：测试",
     "view": "system-view",
     "risk": "low"
   },
@@ -63507,6 +63527,11 @@
   "v6bound": {
     "description": "含义：IPv6 绑定",
     "view": "system-view",
+    "risk": "low"
+  },
+  "auto-recover": {
+    "description": "含义：自动",
+    "view": "ospf-view",
     "risk": "low"
   },
   "bfd-down": {
@@ -63626,11 +63651,6 @@
   },
   "suppress": {
     "description": "含义：抑制",
-    "view": "system-view",
-    "risk": "low"
-  },
-  "protect-switch": {
-    "description": "配置保护倒换",
     "view": "system-view",
     "risk": "low"
   }
