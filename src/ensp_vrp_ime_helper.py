@@ -1041,6 +1041,7 @@ def translate_subject(subject: str) -> str:
         "preference": "优先级",
         "primary": "主用",
         "program": "程序",
+        "protect-switch": "保护倒换",
         "public": "公网",
         "period": "周期",
         "port": "端口",
@@ -2147,6 +2148,10 @@ class CommandStore:
             if source not in ("built-in", "derived", "suffix", "token", "token-common"):
                 cleaned_cmd = clean_for_insert(cmd)
                 if cleaned_cmd:
+                    # 说明要按"清理后的短命令"算。原来 desc 是按整条语法行算的，
+                    # 会把 { be | af1 | ... } 这类可选关键字统统译进来（关键词堆）
+                    if cleaned_cmd != cmd:
+                        desc = infer_description(cleaned_cmd)
                     cmd = cleaned_cmd
             seen_key = cmd
             if source == "suffix":
@@ -2161,15 +2166,19 @@ class CommandStore:
                 continue
             seen.add(seen_key)
             desc_obj = merged_desc.get(cmd)
-            if isinstance(desc_obj, str):
-                desc = desc_obj
-            elif isinstance(desc_obj, dict):
-                desc = desc_obj.get("description", desc)
+            if isinstance(desc_obj, (str, dict)):
+                # built-in 的译文来自 COMMON_COMMANDS，是权威的：不能被上次落盘的旧值
+                # 覆盖（否则一旦某次写坏，之后每次启动都会把坏值读回来，永久化）
                 if source != "built-in":
-                    view = desc_obj.get("view", view)
-                    risk = desc_obj.get("risk", risk)
+                    if isinstance(desc_obj, dict):
+                        desc = desc_obj.get("description", desc)
+                        view = desc_obj.get("view", view)
+                        risk = desc_obj.get("risk", risk)
+                    else:
+                        desc = desc_obj
             else:
-                merged_desc[cmd] = {"description": desc, "view": view, "risk": risk}
+                if source != "suffix":
+                    merged_desc[cmd] = {"description": desc, "view": view, "risk": risk}
             if source not in ("token", "token-common") and desc.startswith("含义："):
                 desc = infer_description(cmd)
                 merged_desc[cmd] = {"description": desc, "view": view, "risk": risk}
@@ -2188,7 +2197,8 @@ class CommandStore:
                 if full_clean.startswith("undo ") and not cmd.startswith("undo "):
                     desc_command = full_clean.removeprefix("undo ").strip()
                 desc = DESCRIPTION_OVERRIDES.get(desc_command, infer_description(desc_command))
-                merged_desc[cmd] = {"description": desc, "view": view, "risk": risk}
+                # 这里算的是"整条长命令"的意思，只用来显示这一行（尾词补全）；
+                # 绝不能写进 merged_desc[cmd] —— 那会把短命令自己的译文覆盖掉
             elif source.startswith("token"):
                 desc = "含义：" + translate_subject(cmd)
                 merged_desc[cmd] = {"description": desc, "view": view, "risk": risk}
@@ -2210,7 +2220,10 @@ class CommandStore:
                 desc = DESCRIPTION_OVERRIDES[cmd]
                 merged_desc[cmd] = {"description": desc, "view": view, "risk": risk}
             desc = polish_description(desc)
-            merged_desc[cmd] = {"description": desc, "view": view, "risk": risk}
+            # 后缀行是"尾词补全"用的，它描述的是整条长命令、不是这个词本身：
+            # 只在还没有任何译文时才落盘，绝不覆盖已有条目
+            if source != "suffix" or cmd not in merged_desc:
+                merged_desc[cmd] = {"description": desc, "view": view, "risk": risk}
             insert_tokens = [t.lower() for t in TOKEN_RE.findall(insert_text)]
             searchable = normalize_spaces(SYNTAX_MARK_RE.sub(" ", PLACEHOLDER_RE.sub(" ", cmd)))
             out.append({
@@ -2283,6 +2296,8 @@ class CommandStore:
             parts = TOKEN_RE.findall(q)
         if not parts and not q.isascii():
             return [], 0, 0
+        # 中文夹英文（"查看arp"、"配置ospf"）是最常见的输入方式
+        mixed_query = bool(q_zh) and bool(re.search(r"[A-Za-z0-9]", q))
         query_is_command_head = len(parts) == 1 and parts[0] in self.head_tokens
         scored = []
         token_scored = []
@@ -2326,7 +2341,18 @@ class CommandStore:
                     and any(token.startswith(query_parts[0]) for token in insert_parts)
                 ) or prefix_parts_match(insert_parts, query_parts)
             else:
-                direct = q in searchable or q in desc or bool(q_zh and q_zh in desc_zh)
+                if mixed_query:
+                    # 中文夹英文时不能只看中文部分：q_zh 会把 "arp"/"ospf"/"IP" 丢掉，
+                    # 结果变成"所有含『查看』的命令"，真正的 display arp 反而排在后面
+                    direct = bool(parts) and all(
+                        p in item["tokens"]
+                        or p in searchable
+                        or p in desc
+                        or bool(chinese_search_key(p) and chinese_search_key(p) in desc_zh)
+                        for p in parts
+                    )
+                else:
+                    direct = q in searchable or q in desc or bool(q_zh and q_zh in desc_zh)
             token_match = False if prefix_query else bool(parts) and all(
                 p in item["tokens"]
                 or p in searchable
@@ -2410,7 +2436,14 @@ class CommandStore:
             else:
                 scored.append((score, item))
         if prefix_query and len(parts) == 1:
-            scored.extend((score + 20, item) for score, item in token_scored)
+            # 词条（"含义：xxx"）只补位，不加分：原来 +20 会让 ip-address 这类
+            # 词条反超 ip pool / ip route-static 这类真命令，把有用的挤到后面
+            if query_is_command_head:
+                # 敲的本身就是现成的命令头（ip、display…）时，词条纯属噪声，
+                # 一律沉到所有真命令之后；敲 br 这种没对应命令的片段时行为不变
+                scored.extend((score - 500, item) for score, item in token_scored)
+            else:
+                scored.extend(token_scored)
         elif not scored:
             scored = token_scored
         scored.sort(key=lambda x: (-x[0], x[1]["command"]))
