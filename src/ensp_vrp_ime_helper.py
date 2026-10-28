@@ -31,6 +31,9 @@ MAX_CHOICE_OPTIONS = 64
 CANDIDATE_MIN_WIDTH_PX = 420
 CANDIDATE_BASE_WIDTH_PX = 780
 CANDIDATE_MAX_WIDTH_PX = 1050
+# 窗口宽度上限随屏幕走：至少 1050，宽屏下最多到屏幕宽度的 90%。
+# 写死 1050 时，3200 宽的屏幕只能用三分之一，长命令和描述会被裁掉。
+CANDIDATE_SCREEN_WIDTH_RATIO = 0.9
 CANDIDATE_MIN_COMMAND_PX = 430
 CANDIDATE_MIN_DESCRIPTION_PX = 190
 CANDIDATE_INDEX_PX = 42
@@ -510,9 +513,12 @@ def clamp_candidate_opacity(value) -> float:
 
 
 def fit_candidate_layout(command_px: int, description_px: int, header_px: int, footer_px: int, screen_width: int) -> dict:
+    screen_px = int(screen_width or 0)
+    # 上限不再写死 1050：宽屏最多用 90% 屏幕宽，小屏仍以屏幕可用宽度为准。
+    width_cap = max(CANDIDATE_MAX_WIDTH_PX, int(screen_px * CANDIDATE_SCREEN_WIDTH_RATIO))
     screen_limit = max(
         CANDIDATE_MIN_WIDTH_PX,
-        min(int(screen_width or 0) - CANDIDATE_SCREEN_MARGIN_PX, CANDIDATE_MAX_WIDTH_PX),
+        min(screen_px - CANDIDATE_SCREEN_MARGIN_PX, width_cap),
     )
     base_width = min(screen_limit, max(CANDIDATE_BASE_WIDTH_PX, CANDIDATE_MIN_WIDTH_PX))
     command_col = max(CANDIDATE_MIN_COMMAND_PX, int(command_px) + CANDIDATE_COLUMN_PAD_PX)
@@ -540,12 +546,15 @@ def fit_candidate_layout(command_px: int, description_px: int, header_px: int, f
             description_col = max(120, available_columns - command_col)
     if command_col + description_col > available_columns:
         command_col = max(CANDIDATE_MIN_COMMAND_PX, available_columns - description_col)
+    # 列被压窄后不再硬裁文字：内容超宽时让 label 按列宽换行。
+    command_wrap = 0 if int(command_px) + CANDIDATE_COLUMN_PAD_PX <= command_col else max(120, command_col - CANDIDATE_COLUMN_PAD_PX)
+    description_wrap = 0 if int(description_px) + CANDIDATE_COLUMN_PAD_PX <= description_col else max(100, description_col - CANDIDATE_COLUMN_PAD_PX)
     return {
         "width": width,
         "command_px": command_col,
         "description_px": description_col,
-        "command_wrap": 0,
-        "description_wrap": 0,
+        "command_wrap": command_wrap,
+        "description_wrap": description_wrap,
     }
 
 
@@ -3118,7 +3127,9 @@ class App:
         changed = False
         if self.items and self.pages > 1:
             self.page = (self.page + delta) % self.pages
-            self.show(repaint=False)
+            # 翻页必须强制重绘：否则上一页的描述会留在旧的 x 位置，
+            # 和新一页的文字叠成「查看 IPv4 三层查看 IPv4 三层」。
+            self.show(repaint=True)
             changed = True
         App.maybe_log_page_trace(
             self,
@@ -3362,7 +3373,9 @@ class App:
         before_pages = self.pages
         if self.items and self.pages > 1:
             self.page = (self.page + delta) % self.pages
-            self.show(repaint=False)
+            # 翻页必须强制重绘：否则上一页的描述会留在旧的 x 位置，
+            # 和新一页的文字叠成「查看 IPv4 三层查看 IPv4 三层」。
+            self.show(repaint=True)
         App.maybe_log_page_trace(self, "candidate_page", source=source, delta=delta, before_page=before_page, before_pages=before_pages, after_page=self.page, after_pages=self.pages)
 
     def accept_query_char(self, ch: str) -> bool:
@@ -4666,6 +4679,18 @@ def run_self_test() -> int:
         and wide_layout["description_wrap"] == 0
         and tight_layout["width"] <= 800 - CANDIDATE_SCREEN_MARGIN_PX,
         f"base={base_layout} wide={wide_layout} tight={tight_layout}"
+    )
+    wide_screen_layout = fit_candidate_layout(2000, 1000, 360, 380, 3200)
+    check(
+        "candidate_width_follows_screen",
+        wide_screen_layout["width"] > CANDIDATE_MAX_WIDTH_PX
+        and wide_screen_layout["width"] <= int(3200 * CANDIDATE_SCREEN_WIDTH_RATIO),
+        f"width={wide_screen_layout['width']}",
+    )
+    check(
+        "candidate_wraps_instead_of_clipping",
+        tight_layout["command_wrap"] > 0 and tight_layout["description_wrap"] > 0,
+        f"cmd_wrap={tight_layout['command_wrap']} desc_wrap={tight_layout['description_wrap']}",
     )
     check("portable_paths", store.data_dir.exists() and store.rules_dir.exists() and store.logs_dir.exists(), "data/rules/logs ok")
     check("ime_buffer_model", App.search_text(type("T", (), {"buffer": "dis"})()) == "dis" and not App.is_tail_search(type("T", (), {"tail_search_mode": False, "buffer": "display ip"})()), "space/esc clear IME buffer; host text untouched")
